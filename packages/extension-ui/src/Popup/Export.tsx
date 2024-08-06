@@ -7,7 +7,7 @@ import fileSaver from 'file-saver';
 import React, { useCallback, useContext, useState } from 'react';
 import { withRouter } from 'react-router';
 
-import { ActionBar, ActionContext, ActionText, Address, Button, InputWithLabel, Warning } from '../components/index.js';
+import { ActionBar, ActionContext, ActionText, Addressnext, Button, InputWithLabelwhite, Warningmnemonic } from '../components/index.js';
 import { useTranslation } from '../hooks/index.js';
 import { exportAccount } from '../messaging.js';
 import { Header } from '../partials/index.js';
@@ -67,26 +67,27 @@ function Export ({ className, match: { params: { address } } }: Props): React.Re
         text={t('Export account')}
       />
       <div className={className}>
-        <Address address={address}>
-          <Warning className='movedWarning'>
+        <Addressnext address={address}>
+          <Warningmnemonic className='movedWarning'>
             {t("You are exporting your account. Keep it safe and don't share it with anyone.")}
-          </Warning>
+          </Warningmnemonic>
           <div className='actionArea'>
-            <InputWithLabel
+            <InputWithLabelwhite
               data-export-password
               disabled={isBusy}
               isError={pass.length < MIN_LENGTH || !!error}
               label={t('password for this account')}
               onChange={onPassChange}
+              placeholder='Password'
               type='password'
             />
             {error && (
-              <Warning
+              <Warningmnemonic
                 isBelowInput
                 isDanger
               >
                 {error}
-              </Warning>
+              </Warningmnemonic>
             )}
             <Button
               className='export-button'
@@ -106,7 +107,7 @@ function Export ({ className, match: { params: { address } } }: Props): React.Re
               />
             </ActionBar>
           </div>
-        </Address>
+        </Addressnext>
       </div>
     </>
   );

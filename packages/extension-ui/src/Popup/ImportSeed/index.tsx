@@ -19,7 +19,7 @@ export interface AccountInfo {
   suri: string;
 }
 
-function ImportSeed (): React.ReactElement {
+function ImportSeed(): React.ReactElement {
   const { t } = useTranslation();
   const { accounts } = useContext(AccountContext);
   const onAction = useContext(ActionContext);
@@ -42,12 +42,12 @@ function ImportSeed (): React.ReactElement {
     );
   }, [chain]);
 
-  const _onCreate = useCallback((name: string, password: string): void => {
+  const _onCreate = useCallback((password: string): void => {
     // this should always be the case
     if (name && password && account) {
       setIsBusy(true);
 
-      createAccountSuri(name, password, account.suri, type, account.genesis)
+      createAccountSuri(password, account.suri, type)
         .then(() => onAction('/'))
         .catch((error): void => {
           setIsBusy(false);

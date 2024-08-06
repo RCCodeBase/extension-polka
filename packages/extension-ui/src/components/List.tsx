@@ -29,7 +29,7 @@ export default styled(List)<Props>`
 
   li::before {
     content: '\\2022';
-    color: var(--primaryColor);
+    color: var(--liColor);
     font-size: 30px;
     font-weight: bold;
     margin-right: 10px;

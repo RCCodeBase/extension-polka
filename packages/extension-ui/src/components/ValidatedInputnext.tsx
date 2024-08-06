@@ -7,7 +7,9 @@ import React, { useEffect, useState } from 'react';
 
 import { useIsMounted } from '../hooks/index.js';
 import { Result } from '../util/validators.js';
-import Warning from './Warning.js';
+// import Warning from './Warning.js';
+import { styled } from '../styled.js';
+import { Warningnext } from './index.js';
 
 interface BasicProps {
   isError?: boolean;
@@ -23,7 +25,7 @@ type Props<T extends BasicProps> = T & {
   validator: Validator<string>;
 }
 
-function ValidatedInput<T extends Record<string, unknown>>({ className, component: Input, defaultValue, onValidatedChange, validator, ...props }: Props<T>): React.ReactElement<Props<T>> {
+function ValidatedInputnext<T extends Record<string, unknown>>({ className, component: Input, defaultValue, onValidatedChange, validator, ...props }: Props<T>): React.ReactElement<Props<T>> {
   const [value, setValue] = useState(defaultValue || '');
   const [validationResult, setValidationResult] = useState<ResultType<string>>(Result.ok(''));
   const isMounted = useIsMounted();
@@ -59,15 +61,28 @@ function ValidatedInput<T extends Record<string, unknown>>({ className, componen
         value={value}
       />
       {Result.isError(validationResult) && (
-        <Warning
+        <Warningnext
           isBelowInput
           isDanger
         >
           {validationResult.error.errorDescription}
-        </Warning>
+        </Warningnext>
       )}
     </div>
   );
 }
 
-export default ValidatedInput;
+// export default ValidatedInputnext;
+export default styled(ValidatedInputnext)`
+  width:100%;
+  display:flex;
+  flex-direction:row;
+  border-bottom: 1px solid;
+  &.withoutMargin {
+    margin-bottom: 0px;
+
+   + .danger {
+      margin-top: 6px;
+    }
+  }
+`;

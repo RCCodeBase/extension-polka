@@ -5,6 +5,7 @@
   "{{name}} ({{size}} bytes)": "",
   "... loading ...": "",
   "Generated 12-word mnemonic seed:": "",
+  "Copy": "",
   "Copy to clipboard": "",
   "Back": "",
   "Create new account (root or derived)": "",
@@ -176,5 +177,10 @@
   "Is your ledger locked?": "",
   "App \"{{network}}\" does not seem to be open": "",
   "Ledger error: {{errorMessage}}": "",
-  "assetId": ""
+  "assetId": "",
+  "Download a copy": "",
+  "Please write down your wallet's mnemonic seed and keep it in a safe place. The mnemonic can be used to restore your wallet.": "",
+  "Complete verification": "",
+  "12 word MNEMONIC seed": "",
+  "Create my account": ""
 }

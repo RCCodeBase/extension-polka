@@ -15,7 +15,7 @@ interface Props {
   onPasswordChange?: (password: string) => void;
 }
 
-function AccountNamePasswordCreation ({ buttonLabel, isBusy, onBackClick, onCreate, onNameChange, onPasswordChange }: Props): React.ReactElement<Props> {
+function AccountNamePasswordCreation({ buttonLabel, isBusy, onBackClick, onCreate, onNameChange, onPasswordChange }: Props): React.ReactElement<Props> {
   const [name, setName] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
 

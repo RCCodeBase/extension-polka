@@ -5,7 +5,7 @@ import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } 
 
 import { canDerive } from '@polkadot/extension-base/utils';
 
-import { AccountContext, ActionContext, Address, ButtonArea, InputWithLabel, Label, NextStepButton, VerticalSpace, Warning } from '../../components/index.js';
+import { AccountContext, ActionContext, Addressnext, ButtonArea, InputWithLabelwhite, Label, NextStepButton, VerticalSpace, Warning } from '../../components/index.js';
 import { useTranslation } from '../../hooks/index.js';
 import { validateAccount, validateDerivationPath } from '../../messaging.js';
 import { nextDerivationPath } from '../../util/nextDerivationPath.js';
@@ -123,7 +123,7 @@ export default function SelectParent ({ className, isLocked, onDerivationConfirm
       <div className={className}>
         {isLocked
           ? (
-            <Address
+            <Addressnext
               address={parentAddress}
               genesisHash={parentGenesis}
             />
@@ -140,13 +140,14 @@ export default function SelectParent ({ className, isLocked, onDerivationConfirm
           )
         }
         <div ref={passwordInputRef}>
-          <InputWithLabel
+          <InputWithLabelwhite
             data-input-password
             isError={!!parentPassword && !isProperParentPassword}
             isFocused
             label={t('enter the password for the account you want to derive from')}
             onChange={_onParentPasswordEnter}
             type='password'
+            placeholder='password'
             value={parentPassword}
           />
           {!!parentPassword && !isProperParentPassword && (

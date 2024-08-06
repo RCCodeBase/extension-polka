@@ -3,7 +3,7 @@
 
 import React, { useContext, useMemo } from 'react';
 
-import { AccountContext, InputWithLabel, ValidatedInput } from '../components/index.js';
+import { AccountContext, InputWithLabel, ValidatedInputnext } from '../components/index.js';
 import { useTranslation } from '../hooks/index.js';
 import { isNotShorterThan } from '../util/validators.js';
 
@@ -17,7 +17,7 @@ interface Props {
   value?: string | null;
 }
 
-export default function Name ({ address, className, isFocused, label, onBlur, onChange, value }: Props): React.ReactElement<Props> {
+export default function Name({ address, className, isFocused, label, onBlur, onChange, value }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const { accounts } = useContext(AccountContext);
   const isNameValid = useMemo(() => isNotShorterThan(3, t('Account name is too short')), [t]);
@@ -26,13 +26,14 @@ export default function Name ({ address, className, isFocused, label, onBlur, on
   const startValue = value || account?.name;
 
   return (
-    <ValidatedInput
+    <ValidatedInputnext
       className={className}
       component={InputWithLabel}
       data-input-name
       defaultValue={startValue}
       isFocused={isFocused}
       label={label || t('A descriptive name for your account')}
+      placeholder={label || t('A descriptive name for your account')}
       onBlur={onBlur}
       onEnter={onBlur}
       onValidatedChange={onChange}

@@ -8,7 +8,7 @@ import React, { useCallback, useContext, useEffect, useMemo, useState } from 're
 
 import { canDerive } from '@polkadot/extension-base/utils';
 
-import { AccountContext, Address, Checkbox, Dropdown, Link, MenuDivider } from '../../components/index.js';
+import { AccountContext, Addressnext, Checkbox, Dropdown, Link, MenuDivider } from '../../components/index.js';
 import { useGenesisHashOptions, useTranslation } from '../../hooks/index.js';
 import { editAccount, tieAccount } from '../../messaging.js';
 import { Name } from '../../partials/index.js';
@@ -132,7 +132,7 @@ function Account ({ address, className, genesisHash, isExternal, isHardware, isH
           onChange={_onCheckboxChange}
         />
       )}
-      <Address
+      <Addressnext
         actions={withMenu ? _actions : null}
         address={address}
         className='address'
@@ -146,6 +146,7 @@ function Account ({ address, className, genesisHash, isExternal, isHardware, isH
         toggleActions={toggleActions}
       >
         {isEditing && (
+          <div className='nameedit'>
           <Name
             address={address}
             className={`editName ${parentName ? 'withParent' : ''}`}
@@ -154,8 +155,9 @@ function Account ({ address, className, genesisHash, isExternal, isHardware, isH
             onBlur={_saveChanges}
             onChange={setName}
           />
+          </div>
         )}
-      </Address>
+      </Addressnext>
     </div>
   );
 }
@@ -168,10 +170,11 @@ export default styled(Account)<Props>`
   .editName {
     position: absolute;
     flex: 1;
-    left: 70px;
+    left: 10px;
     top: 10px;
-    width: 350px;
-
+    width: 400px;
+    background:white;
+    border-radius: 8px;
     .danger {
       background-color: var(--bodyColor);
       margin-top: -13px;

@@ -5,7 +5,7 @@ import { faLock, faLockOpen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { Button, InputWithLabel } from '../../components/index.js';
+import { Button, InputWithLabelwhite } from '../../components/index.js';
 import { useTranslation } from '../../hooks/index.js';
 import { styled } from '../../styled.js';
 
@@ -39,7 +39,7 @@ function DerivationPath ({ className, defaultPath, isError, onChange, withSoftPa
     <div className={className}>
       <div className='container'>
         <div className={`pathInput ${isDisabled ? 'locked' : ''}`}>
-          <InputWithLabel
+          <InputWithLabelwhite
             data-input-suri
             disabled={isDisabled}
             isError={isError || !path}

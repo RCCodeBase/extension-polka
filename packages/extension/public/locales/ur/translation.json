@@ -5,6 +5,7 @@
     "{{name}} ({{size}} bytes)": "{{name}} ({{size}} بائٹس)",
     "... loading ...": "...لوڈہورہاہے...",
     "Generated 12-word mnemonic seed:": "لفظوںکایادگاربیجتیارکیا",
+    "Copy": "کاپی کریں۔",
     "Copy to clipboard": "کلپبورڈپرکاپیکریں۔",
     "Back": "واپس",
     "Create new account (root or derived)": "نیااکاؤنٹبنائیں (جڑیاماخوذ))",
@@ -158,8 +159,10 @@
     "Export all accounts": "تماماکاؤنٹسبرآمدکریں۔",
     "All account": "تماماکاؤنٹ",
     "password for encrypting all accounts": "تماماکاؤنٹسکوخفیہکرنےکےلیےپاسورڈ۔",
-    "I want to export all my accounts": "میںاپنےتماماکاؤنٹسبرآمدکرناچاہتاہوں۔"
+    "I want to export all my accounts": "میںاپنےتماماکاؤنٹسبرآمدکرناچاہتاہوں۔",
+    "Download a copy": "ایک کاپی ڈاؤن لوڈ کریں،",
+    "Please write down your wallet's mnemonic seed and keep it in a safe place. The mnemonic can be used to restore your wallet.": "کا یادداشت کا بیج لکھیں اور اسے محفوظ جگہ پر رکھیں۔ یادداشت کو آپ کے بٹوے کو بحال کرنے کے لیے استعمال کیا جا سکتا ہے۔",
+    "Complete verification":" مکمل تصدیق",
+    "12 word MNEMONIC seed":"12 لفظ MNEMONIC بیج",
+    "Create my account":"میرا کھاتہ کھولیں"
 }
-
-
-

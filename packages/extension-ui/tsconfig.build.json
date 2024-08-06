@@ -8,6 +8,10 @@
   "exclude": [
     "**/*.spec.ts"
   ],
+  "include": [
+    "src/**/*",
+    "src/assets/words.json"
+  ],
   "references": [
     { "path": "../extension-base/tsconfig.build.json" },
     { "path": "../extension-chains/tsconfig.build.json" },

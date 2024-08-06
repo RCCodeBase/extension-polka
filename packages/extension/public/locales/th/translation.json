@@ -5,6 +5,7 @@
   "{{name}} ({{size}} bytes)": "{{name}} ({{size}} ไบต์)",
   "... loading ...": "...กำลังโหลด...",
   "Generated 12-word mnemonic seed:": "mnemonic seed 12 คำ",
+  "Copy": "สำเนา",
   "Copy to clipboard": "คัดลอกไปยังคลิปบอร์ด",
   "Back": "ย้อนกลับ",
   "Create new account (root or derived)": "สร้างบัญชีใหม่(บัญชีหลักหรือบัญชีลูก)",
@@ -158,5 +159,10 @@
   "Export all accounts": "ส่งออกทุกบัญชี",
   "All account": "ทุกบัญชี",
   "password for encrypting all accounts": "รหัสผ่านสำหรับการเข้ารหัสทุกบัญชี",
-  "I want to export all my accounts": "ฉันอยากจะนำออกทุกบัญชี"
+  "I want to export all my accounts": "ฉันอยากจะนำออกทุกบัญชี",
+  "Download a copy": "ดาวน์โหลดสำเนา",
+  "Please write down your wallet's mnemonic seed and keep it in a safe place. The mnemonic can be used to restore your wallet.": "โปรดจดเมล็ดช่วยในการจำกระเป๋าสตางค์ของคุณและเก็บไว้ในที่ปลอดภัย คุณสามารถใช้ตัวช่วยในการกู้คืนกระเป๋าสตางค์ของคุณได้",
+  "Complete verification":"ทำการยืนยันที่สมบูรณ์",
+  "12 word MNEMONIC seed":"เมล็ดช่วยในการจำ 12 คำ",
+  "Create my account":"สร้างบัญชีของฉัน"
 }

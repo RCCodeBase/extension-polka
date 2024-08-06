@@ -1,20 +1,23 @@
 // Copyright 2019-2024 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useContext, useMemo } from 'react';
 
-import { ActionContext, Box, Button, ButtonArea, List, VerticalSpace } from '../components/index.js';
+import { ActionContext, Button, ButtonArea, Dropdownnext, List, VerticalSpace } from '../components/index.js';
 import { useTranslation } from '../hooks/index.js';
 import { Header } from '../partials/index.js';
 import { styled } from '../styled.js';
+import getLanguageOptions from '../util/getLanguageOptions.js';
+import { settings } from '@polkadot/ui-settings';
 
 interface Props {
   className?: string;
 }
 
-function Welcome ({ className }: Props): React.ReactElement<Props> {
+function Welcome({ className }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const onAction = useContext(ActionContext);
+  const languageOptions = useMemo(() => getLanguageOptions(), []);
 
   const _onClick = useCallback(
     (): void => {
@@ -24,18 +27,31 @@ function Welcome ({ className }: Props): React.ReactElement<Props> {
     [onAction]
   );
 
+  const _onChangeLang = useCallback(
+    (value: string): void => {
+      settings.set({ i18nLang: value });
+    }, []
+  );
+
   return (
     <>
-      <Header text={t('Welcome')} />
+      <Header />
+      <h3>{t('Welcome')}</h3>
+      <Dropdownnext
+        className='dropdown'
+        label=''
+        onChange={_onChangeLang}
+        options={languageOptions}
+        value={settings.i18nLang}
+      />
+
       <div className={className}>
         <p>{t('Before we start, just a couple of notes regarding use:')}</p>
-        <Box>
-          <List>
-            <li>{t('We do not send any clicks, pageviews or events to a central server')}</li>
-            <li>{t('We do not use any trackers or analytics')}</li>
-            <li>{t("We don't collect keys, addresses or any information - your information never leaves this machine")}</li>
-          </List>
-        </Box>
+        <List>
+          <li>{t('We do not send any clicks, pageviews or events to a central server')}</li>
+          <li>{t('We do not use any trackers or analytics')}</li>
+          <li>{t("We don't collect keys, addresses or any information - your information never leaves this machine")}</li>
+        </List>
         <p>{t('... we are not in the information collection business (even anonymized).')}</p>
       </div>
       <VerticalSpace />
@@ -46,10 +62,18 @@ function Welcome ({ className }: Props): React.ReactElement<Props> {
   );
 }
 
-export default styled(Welcome)<Props>`
+export default styled(Welcome) <Props>`
   p {
     color: var(--subTextColor);
     margin-bottom: 6px;
     margin-top: 0;
+  }
+  h3{
+   font-style: normal;
+  font-variant: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 27px;
+  font-family: Rubik;
   }
 `;

@@ -21,8 +21,6 @@ function ButtonArea ({ children, className }: Props): React.ReactElement<Props> 
 export default styled(ButtonArea)<Props>`
   display: flex;
   flex-direction: row;
-  background: var(--highlightedAreaBackground);
-  border-top: 1px solid var(--inputBorderColor);
   padding: 12px 24px;
   margin-left: 0;
   margin-right: 0;

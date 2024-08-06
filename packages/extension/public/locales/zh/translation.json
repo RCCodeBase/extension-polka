@@ -5,6 +5,7 @@
   "{{name}} ({{size}} bytes)": "{{name}} ({{size}} 字节)",
   "... loading ...": "... 加载 ...",
   "Generated 12-word mnemonic seed:": "生成 12 字助记词种子:",
+  "Copy": "复制",
   "Copy to clipboard": "复制到剪贴板",
   "Back": "返回",
   "Create new account (root or derived)": "创建新帐户(根帐户或派生帐户)",
@@ -103,5 +104,10 @@
   "Please write down your wallet's mnemonic seed and keep it in a safe place. The mnemonic can be used to restore your wallet. Keep it carefully to not lose your assets.": "请写下你的钱包助记词，放在安全的地方。这个助记词可以用来恢复你的钱包。小心保管，以免失去你的资产。",
   "You are exporting your account. Keep it safe and don't share it with anyone.": "您正在导出帐户。保管好它，不要与任何人分享。",
   "Manage Website Access": "管理网站访问",
-  "Notifications": "通知"
+  "Notifications": "通知",
+  "Download a copy": "下载副本",
+  "Please write down your wallet's mnemonic seed and keep it in a safe place. The mnemonic can be used to restore your wallet.": "请记下您钱包的助记词种子并妥善保管，助记词可用于恢复您的钱包。",
+  "Complete verification":"完成验证",
+  "12 word MNEMONIC seed":"12字助记词种子",
+  "Create my account":"创建我的账户"
 }

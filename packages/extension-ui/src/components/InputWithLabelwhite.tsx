@@ -5,9 +5,10 @@ import React, { useCallback, useState } from 'react';
 
 import { useTranslation } from '../hooks/index.js';
 import { styled } from '../styled.js';
-// import Label from './Label.js';
-import { Input } from './TextInputs.js';
+import Label from './Label.js';
+// import { Input } from './TextInputs.js';
 import Warning from './Warning.js';
+import { Inputwhite } from './TextInputswhite.js';
 
 interface Props {
   className?: string;
@@ -26,7 +27,7 @@ interface Props {
   withoutMargin?: boolean;
 }
 
-function InputWithLabel({ className, defaultValue, disabled, isError, isFocused, isReadOnly, label = '', onBlur, onChange, onEnter, placeholder, type = 'text', value, withoutMargin }: Props): React.ReactElement<Props> {
+function InputWithLabelwhite ({ className, defaultValue, disabled, isError, isFocused, isReadOnly, label = '', onBlur, onChange, onEnter, placeholder, type = 'text', value, withoutMargin }: Props): React.ReactElement<Props> {
   const [isCapsLock, setIsCapsLock] = useState(false);
   const { t } = useTranslation();
 
@@ -53,12 +54,11 @@ function InputWithLabel({ className, defaultValue, disabled, isError, isFocused,
   );
 
   return (
-    // <Label
-    //   className={`${className || ''} ${withoutMargin ? 'withoutMargin' : ''}`}
-    //   label={label}
-    // >
-    <div className={`${className || ''} ${withoutMargin ? 'withoutMargin' : ''}`}>
-      <Input
+    <Label
+      className={`${className || ''} ${withoutMargin ? 'withoutMargin' : ''}`}
+      label={label}
+    >
+      <Inputwhite
         autoCapitalize='off'
         autoCorrect='off'
         autoFocus={isFocused}
@@ -67,22 +67,23 @@ function InputWithLabel({ className, defaultValue, disabled, isError, isFocused,
         onBlur={onBlur}
         onChange={_onChange}
         onKeyPress={_checkKey}
-        placeholder={placeholder || label}
+        placeholder={placeholder}
         readOnly={isReadOnly}
         spellCheck={false}
         type={type}
         value={value}
         withError={isError}
       />
-      {isCapsLock && (
+      { isCapsLock && (
         <Warning isBelowInput>{t('Warning: Caps lock is on')}</Warning>
       )}
-    </div>
+    </Label>
   );
 }
 
-export default styled(InputWithLabel) <Props>`
-  width:60%;
+export default styled(InputWithLabelwhite)<Props>`
+  margin-bottom: 16px;
+
   &.withoutMargin {
     margin-bottom: 0px;
 

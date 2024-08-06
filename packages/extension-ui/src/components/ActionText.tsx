@@ -16,7 +16,7 @@ interface Props {
   text: string;
 }
 
-function ActionText ({ className, icon, onClick, text }: Props): React.ReactElement<Props> {
+function ActionText({ className, icon, onClick, text }: Props): React.ReactElement<Props> {
   return (
     <div
       className={className}
@@ -28,14 +28,13 @@ function ActionText ({ className, icon, onClick, text }: Props): React.ReactElem
   );
 }
 
-export default styled(ActionText)<Props>`
+export default styled(ActionText) <Props>`
   cursor: pointer;
 
   span {
     color: var(--labelColor);
     font-size: var(--labelFontSize);
     line-height: var(--labelLineHeight);
-    text-decoration-line: underline;
   }
 
   .svg-inline--fa {

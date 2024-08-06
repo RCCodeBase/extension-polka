@@ -27,7 +27,7 @@ interface ConfirmState {
   parentPassword: string;
 }
 
-function Derive ({ isLocked }: Props): React.ReactElement<Props> {
+function Derive({ isLocked }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const onAction = useContext(ActionContext);
   const { accounts } = useContext(AccountContext);
@@ -42,7 +42,7 @@ function Derive ({ isLocked }: Props): React.ReactElement<Props> {
     [accounts, parentAddress]
   );
 
-  const _onCreate = useCallback((name: string, password: string) => {
+  const _onCreate = useCallback((password: string) => {
     if (!account || !name || !password || !parentPassword) {
       return;
     }

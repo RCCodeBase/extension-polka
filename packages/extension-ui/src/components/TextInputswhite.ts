@@ -9,7 +9,7 @@ interface Props {
   withError?: boolean;
 }
 
-const TextInput = css<Props>(({ withError }) => `
+const TextInputwhite = css<Props>(({ withError }) => `
   border-color: var(${withError ? '--errorBorderColor' : '--inputBorderColor'});
   box-sizing: border-box;
   color: var(${withError ? '--textColorDanger' : '--textColor'});
@@ -21,10 +21,10 @@ const TextInput = css<Props>(({ withError }) => `
   padding: 0.5rem 0.75rem;
   resize: none;
   width: 100%;
-  background: transparent;
+  background: white;
   border: 0px;
   // border-bottom: 1px solid;
-  border-radius: 0px;
+  border-radius: 10px;
 
   &:read-only {
     background: var(--readonlyInputBackground);
@@ -33,5 +33,5 @@ const TextInput = css<Props>(({ withError }) => `
   }
 `);
 
-export const TextArea = styled.textarea<Props>`${TextInput}`;
-export const Input = styled.input<Props>`${TextInput}`;
+export const TextAreawhite = styled.textarea<Props>`${TextInputwhite}`;
+export const Inputwhite = styled.input<Props>`${TextInputwhite}`;

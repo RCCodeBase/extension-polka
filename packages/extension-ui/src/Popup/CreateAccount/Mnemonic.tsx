@@ -3,15 +3,16 @@
 
 import React, { useCallback, useState } from 'react';
 
-import { ButtonArea, Checkbox, MnemonicSeed, NextStepButton, VerticalSpace, Warning } from '../../components/index.js';
+import { ButtonArea, Checkbox, MnemonicSeed, NextStepButton, VerticalSpace, Warningmnemonic } from '../../components/index.js';
 import { useToast, useTranslation } from '../../hooks/index.js';
 
 interface Props {
+  name:string;
   onNextStep: () => void;
   seed: string;
 }
 
-function Mnemonic ({ onNextStep, seed }: Props): React.ReactElement<Props> {
+function Mnemonic({ name,onNextStep, seed }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const [isMnemonicSaved, setIsMnemonicSaved] = useState(false);
   const { show } = useToast();
@@ -26,9 +27,9 @@ function Mnemonic ({ onNextStep, seed }: Props): React.ReactElement<Props> {
         onCopy={_onCopy}
         seed={seed}
       />
-      <Warning>
-        {t("Please write down your wallet's mnemonic seed and keep it in a safe place. The mnemonic can be used to restore your wallet. Keep it carefully to not lose your assets.")}
-      </Warning>
+      <Warningmnemonic>
+        {t("Please write down your wallet's mnemonic seed and keep it in a safe place. The mnemonic can be used to restore your wallet.")}
+      </Warningmnemonic>
       <VerticalSpace />
       <Checkbox
         checked={isMnemonicSaved}
@@ -37,7 +38,7 @@ function Mnemonic ({ onNextStep, seed }: Props): React.ReactElement<Props> {
       />
       <ButtonArea>
         <NextStepButton
-          isDisabled={!isMnemonicSaved}
+          isDisabled={!isMnemonicSaved || !name}
           onClick={onNextStep}
         >
           {t('Next step')}

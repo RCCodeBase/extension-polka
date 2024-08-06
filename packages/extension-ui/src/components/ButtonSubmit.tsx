@@ -14,9 +14,10 @@ export interface ButtonProps {
   isDisabled?: boolean;
   onClick?: () => void | Promise<void | boolean> | null;
   to?: string;
+  left?: boolean | null | undefined;
 }
 
-function Button({ children, className = '', isBusy, isDisabled, onClick, to }: ButtonProps): React.ReactElement<ButtonProps> {
+function ButtomSubmit({ children, className = '', isBusy, isDisabled, onClick, to }: ButtonProps): React.ReactElement<ButtonProps> {
   const _onClick = useCallback(
     (): void => {
       if (isBusy || isDisabled) {
@@ -45,28 +46,29 @@ function Button({ children, className = '', isBusy, isDisabled, onClick, to }: B
   );
 }
 
-export default styled(Button)<ButtonProps>(({ isDanger }) => `
-  background: var(${isDanger ? '--buttonBackgroundDanger' : '--btnBackground'});
+export default styled(ButtomSubmit)<ButtonProps>(({ isDanger,left }) => `
+  background: var(${isDanger ? '--buttonBackgroundDanger' : '--btnBackgroundSubmit'});
   cursor: pointer;
   display: block;
-  width: 100%;
+  width: ${left ? 'none' : '100%'};
   height: ${isDanger ? '40px' : '48px'};
   box-sizing: border-box;
- border: 1px solid var(--liColor);
+  border: 1px solid var(--liColor);
   border-radius: var(--btnRadius);
-  color: var(--buttonTextColor);
-  font-size: 15px;
+  color: var(--buttonTextsbmt);
+  font-size: 18px;
   line-height: 20px;
   padding: 0 1rem;
   position: relative;
   text-align: center; 
+  letter-spacing: 0.54px;
 
   &:disabled {
     cursor: default;
   }
 
   &:not(:disabled):hover {
-    background: var(${isDanger ? '--buttonBackgroundDangerHover' : '--buttonBackgroundHover'});
+    background: var(${isDanger ? '--buttonBackgroundDangerHover' : '--btnBackgroundSubmitHover'});
   }
 
   .busyOverlay,

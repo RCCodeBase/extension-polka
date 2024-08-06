@@ -1,11 +1,12 @@
 // Copyright 2019-2024 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { faArrowLeft, faCog, faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faCog, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 
-import logo from '../assets/pjs.svg';
+import logo from '../assets/cord.svg';
+// import createicon from '../assets/createico.svg';
 import { ActionContext } from '../components/index.js';
 import InputFilter from '../components/InputFilter.js';
 import Link from '../components/Link.js';
@@ -14,6 +15,7 @@ import { getConnectedTabsUrl } from '../messaging.js';
 import { styled } from '../styled.js';
 import MenuAdd from './MenuAdd.js';
 import MenuSettings from './MenuSettings.js';
+import Createico from '../util/ico/Createico';
 
 interface Props {
   children?: React.ReactNode;
@@ -28,7 +30,7 @@ interface Props {
   text?: React.ReactNode;
 }
 
-function Header ({ children, className = '', onFilter, showAdd, showBackArrow, showConnectedAccounts, showSearch, showSettings, smallMargin = false, text }: Props): React.ReactElement<Props> {
+function Header({ children, className = '', onFilter, showAdd, showBackArrow, showConnectedAccounts, showSearch, showSettings, smallMargin = false, text }: Props): React.ReactElement<Props> {
   const [isAddOpen, setShowAdd] = useState(false);
   const [isSettingsOpen, setShowSettings] = useState(false);
   const [isSearchOpen, setShowSearch] = useState(false);
@@ -52,6 +54,10 @@ function Header ({ children, className = '', onFilter, showAdd, showBackArrow, s
       .then((tabsUrl) => setConnectedTabsUrl(tabsUrl))
       .catch(console.error);
   }, [showConnectedAccounts]);
+
+  const getCSSVariable = (variable: string) => {
+    return getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
+  };
 
   useOutsideClick([addIconRef, addMenuRef], (): void => {
     isAddOpen && setShowAdd(!isAddOpen);
@@ -113,7 +119,10 @@ function Header ({ children, className = '', onFilter, showAdd, showBackArrow, s
               />
             )
           }
-          <span className='logoText'>{text || 'polkadot{.js}'}</span>
+          {text ?
+            (<span className='logoText'>{text}</span>) :
+            (<span className='logoText'> <span className='logoh3head'>CORD</span> Network</span>)}
+          {/* <span className='logoText'>{text || 'CORD Network'}</span> */}
         </div>
         {showSearch && (
           <div className={`searchBarWrapper ${isSearchOpen ? 'selected' : ''}`}>
@@ -151,11 +160,7 @@ function Header ({ children, className = '', onFilter, showAdd, showBackArrow, s
               onClick={_toggleAdd}
               ref={addIconRef}
             >
-              <FontAwesomeIcon
-                className={`plusIcon ${isAddOpen ? 'selected' : ''}`}
-                icon={faPlusCircle}
-                size='lg'
-              />
+              <Createico fill={getCSSVariable('--svgFill')} />
             </div>
           )}
           {showSettings && (
@@ -185,14 +190,15 @@ function Header ({ children, className = '', onFilter, showAdd, showBackArrow, s
   );
 }
 
-export default React.memo(styled(Header)<Props>`
+export default React.memo(styled(Header) <Props>`
   max-width: 100%;
   box-sizing: border-box;
   font-weight: normal;
   margin: 0;
   position: relative;
   margin-bottom: 25px;
-
+  background: var(--headerBackground);
+  border-bottom: 1px solid #40172F;
   && {
     padding: 0 0 0;
   }
@@ -203,6 +209,7 @@ export default React.memo(styled(Header)<Props>`
     width: 100%;
     border-bottom: 1px solid var(--inputBorderColor);
     min-height: 70px;
+
 
     .branding {
       display: flex;
@@ -229,6 +236,12 @@ export default React.memo(styled(Header)<Props>`
 
     .popupMenus, .searchBarWrapper {
       align-self: center;
+    }
+
+    .createico {
+        width: 28px;
+        height: 28px;
+       fill: green;
     }
 
     .connectedAccountsWrapper {
@@ -300,6 +313,14 @@ export default React.memo(styled(Header)<Props>`
     color: var(--labelColor);
     margin-right: 1rem;
     cursor: pointer;
+  }
+  .logoh3head{
+   font-style: normal;
+  font-variant: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 27px;
+  font-family: Rubik;
   }
 
   &.smallMargin {
