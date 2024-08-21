@@ -475,7 +475,7 @@ export default styled(Address)<Props>`
 
     &:hover {
       cursor: pointer;
-      background: var(--readonlyInputBackground);
+      // background: var(--readonlyInputBackground);
     }
   }
 `;

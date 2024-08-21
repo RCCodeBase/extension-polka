@@ -164,5 +164,6 @@
     "Please write down your wallet's mnemonic seed and keep it in a safe place. The mnemonic can be used to restore your wallet.": "অনুগ্রহ করে আপনার মানিব্যাগের স্মৃতিবিজড়িত বীজ লিখে রাখুন এবং এটি একটি নিরাপদ স্থানে রাখুন। আপনার মানিব্যাগ পুনরুদ্ধার করতে স্মৃতিচিহ্নটি ব্যবহার করা যেতে পারে।",
     "Complete verification":"সম্পূর্ণ যাচাইকরণ",
     "12 word MNEMONIC seed":"12 শব্দ MNEMONIC বীজ",
-    "Create my account":"আমার একাউন্ট তৈরি কর"
+    "Create my account":"আমার একাউন্ট তৈরি কর",
+    "Confirm your recovery phrase by filling the empty space with the below words":"নীচের শব্দগুলি দিয়ে খালি স্থান পূরণ করে আপনার পুনরুদ্ধার বাক্যাংশটি নিশ্চিত করুন৷"
 }

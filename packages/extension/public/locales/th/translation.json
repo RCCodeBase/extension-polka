@@ -164,5 +164,6 @@
   "Please write down your wallet's mnemonic seed and keep it in a safe place. The mnemonic can be used to restore your wallet.": "โปรดจดเมล็ดช่วยในการจำกระเป๋าสตางค์ของคุณและเก็บไว้ในที่ปลอดภัย คุณสามารถใช้ตัวช่วยในการกู้คืนกระเป๋าสตางค์ของคุณได้",
   "Complete verification":"ทำการยืนยันที่สมบูรณ์",
   "12 word MNEMONIC seed":"เมล็ดช่วยในการจำ 12 คำ",
-  "Create my account":"สร้างบัญชีของฉัน"
+  "Create my account":"สร้างบัญชีของฉัน",
+  "Confirm your recovery phrase by filling the empty space with the below words":"ยืนยันวลีกู้คืนของคุณโดยเติมช่องว่างด้วยคำด้านล่าง"
 }

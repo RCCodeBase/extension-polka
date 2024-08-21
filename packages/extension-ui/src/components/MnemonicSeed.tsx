@@ -18,9 +18,6 @@ interface Props {
 function MnemonicSeed({ className, onCopy, seed }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
 
-  const getCSSVariable = (variable: string) => {
-    return getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
-  };
 
   const downloadFile = () => {
     const text = seed; // Replace with your text content
@@ -51,7 +48,7 @@ function MnemonicSeed({ className, onCopy, seed }: Props): React.ReactElement<Pr
             onClick={onCopy}
             data-seed-action='copy'
           >
-            <Copyico fill={getCSSVariable('--svgFill')} />
+            <Copyico  />
             <span>{t('Copy')}</span>
           </div>
 
@@ -61,7 +58,7 @@ function MnemonicSeed({ className, onCopy, seed }: Props): React.ReactElement<Pr
           onClick={downloadFile}
         >
           <span>{t('Download a copy')}</span>
-          <Copyico fill={getCSSVariable('--svgFill')} />
+          <Copyico />
         </div>
       </div>
     </div>

@@ -26,6 +26,7 @@ import { AccountContext, SettingsContext } from './contexts.js';
 import Menu from './Menu.js';
 import Svg from './Svg.js';
 import Copyico from '../util/ico/Copyico.js';
+// import Threedotico from '../util/ico/Threedot';
 
 export interface Props {
   actions?: React.ReactNode;
@@ -169,9 +170,6 @@ function Address({ actions, address, children, className, genesisHash, isExterna
   //   [address, isHidden]
   // );
 
-  const getCSSVariable = (variable: string) => {
-    return getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
-  };
 
   const Name = () => {
     const accountName = name || account?.name;
@@ -252,16 +250,20 @@ function Address({ actions, address, children, className, genesisHash, isExterna
           ) : (<></>)}
            {!createacc &&(
             <>
+            {actions && (
+              <>
                  <div
                  className='settings'
                  onClick={_onClick}
                  ref={actIconRef}
                >
-                 <Svg
+                  {/* <Threedotico /> */}
+                   <Svg
                    className={`detailsIcon ${showActionsMenu ? 'active' : ''}`}
                    src={details}
-                 />
+                 />  
                </div>
+
                {showActionsMenu && (
                  <Menu
                    className={`movableMenu ${moveMenuUp ? 'isMoved' : ''}`}
@@ -270,6 +272,8 @@ function Address({ actions, address, children, className, genesisHash, isExterna
                    {actions}
                  </Menu>
                )}
+               </>
+              )}
              </>
            )}
       
@@ -296,7 +300,7 @@ function Address({ actions, address, children, className, genesisHash, isExterna
               {formatted || address || t('<unknown>')}
             </div>
             <CopyToClipboard text={(formatted && formatted) || ''} >
-              <span onClick={_onCopy}><Copyico fill={getCSSVariable('--svgFill')} /></span>
+              <span onClick={_onCopy}><Copyico /></span>
             </CopyToClipboard>
             {(actions || showVisibilityAction) && (
               <></>
@@ -483,7 +487,7 @@ export default styled(Address) <Props>`
   }
 
   .detailsIcon {
-    background: var(--accountDotsIconColor);
+    background: var(--svgFill);
     width: 3px;
     height: 19px;
 
@@ -532,7 +536,7 @@ export default styled(Address) <Props>`
 
     &:hover {
       cursor: pointer;
-      background: var(--readonlyInputBackground);
+      // background: var(--readonlyInputBackground);
     }
   }
 `;

@@ -159,5 +159,6 @@
   "Please write down your wallet's mnemonic seed and keep it in a safe place. The mnemonic can be used to restore your wallet.": "Veuillez noter la graine mnémonique de votre portefeuille et conservez-la dans un endroit sûr. Le mnémonique peut être utilisé pour restaurer votre portefeuille.",
   "Complete verification":"Vérification complète",
   "12 word MNEMONIC seed":"Graine MNÉMONIQUE de 12 mots",
-  "Create my account":"Créer mon compte"
+  "Create my account":"Créer mon compte",
+  "Confirm your recovery phrase by filling the empty space with the below words":"Confirmez votre phrase de récupération en remplissant l'espace vide avec les mots ci-dessous"
 }

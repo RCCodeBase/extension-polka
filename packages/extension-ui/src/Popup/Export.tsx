@@ -41,7 +41,6 @@ function Export ({ className, match: { params: { address } } }: Props): React.Re
   const _onExportButtonClick = useCallback(
     (): void => {
       setIsBusy(true);
-
       exportAccount(address, pass)
         .then(({ exportedJson }) => {
           const blob = new Blob([JSON.stringify(exportedJson)], { type: 'application/json; charset=utf-8' });
@@ -67,7 +66,7 @@ function Export ({ className, match: { params: { address } } }: Props): React.Re
         text={t('Export account')}
       />
       <div className={className}>
-        <Addressnext address={address}>
+        <Addressnext address={address}    actions={null}>
           <Warningmnemonic className='movedWarning'>
             {t("You are exporting your account. Keep it safe and don't share it with anyone.")}
           </Warningmnemonic>

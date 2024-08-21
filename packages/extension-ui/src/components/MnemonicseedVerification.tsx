@@ -95,6 +95,7 @@ function MnemonicseedVerification({ className, onNextStep, seed }: Props): React
         <>
             <div className={className}>
                 <p className='txthead'>{t('12 word MNEMONIC seed')}</p>
+                <p className='txtpara'>{t('Confirm your recovery phrase by filling the empty space with the below words')}</p>
                 <div className='verifyMnemonic'>
                     {wordsArray.map((word, index) => (
                         positions.includes(index + 1) ? (
@@ -122,7 +123,7 @@ function MnemonicseedVerification({ className, onNextStep, seed }: Props): React
             <VerticalSpace />
             <ButtonArea>
                 <NextStepButton
-                    // isDisabled={!verifiedwords}
+                    isDisabled={!verifiedwords}
                     onClick={onNextStep}
                 >
                     {t('Complete verification')}
@@ -138,9 +139,16 @@ text-align: left;
 font: normal normal medium 16px Rubik;
 letter-spacing: 0px;
 font-weight:500;
+margin-bottom:0px;
+}
+.txtpara{
+text-align: left;
+font: normal normal medium 12px Rubik;
+letter-spacing: 0px;
+font-weight:500;
+font-size:12px !important;
 }
 .verifyMnemonic{
-  margin-bottom: 21px;
   background: var(--cardthemeBg);
   // border: 1px solid var(--boxBorderColor);
   box-sizing: border-box;

@@ -55,10 +55,6 @@ function Header({ children, className = '', onFilter, showAdd, showBackArrow, sh
       .catch(console.error);
   }, [showConnectedAccounts]);
 
-  const getCSSVariable = (variable: string) => {
-    return getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
-  };
-
   useOutsideClick([addIconRef, addMenuRef], (): void => {
     isAddOpen && setShowAdd(!isAddOpen);
   });
@@ -160,7 +156,7 @@ function Header({ children, className = '', onFilter, showAdd, showBackArrow, sh
               onClick={_toggleAdd}
               ref={addIconRef}
             >
-              <Createico fill={getCSSVariable('--svgFill')} />
+              <Createico />
             </div>
           )}
           {showSettings && (

@@ -164,5 +164,6 @@
   "Please write down your wallet's mnemonic seed and keep it in a safe place. The mnemonic can be used to restore your wallet.": "Lütfen cüzdanınızın anımsatıcı tohumunu yazın ve güvenli bir yerde saklayın. Anımsatıcı, cüzdanınızı geri yüklemek için kullanılabilir",
   "Complete verification":"Doğrulamayı tamamla",
   "12 word MNEMONIC seed":"12 kelimelik MNEMONIC tohumu",
-  "Create my account":"Hesabımı oluşturmak"
+  "Create my account":"Hesabımı oluşturmak",
+  "Confirm your recovery phrase by filling the empty space with the below words":"Boş alanı aşağıdaki kelimelerle doldurarak kurtarma ifadenizi onaylayın"
 }

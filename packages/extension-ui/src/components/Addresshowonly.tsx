@@ -165,9 +165,6 @@ function Addresshowonly({ actions, address, children, className, genesisHash, is
   //   [address, isHidden]
   // );
 
-  const getCSSVariable = (variable: string) => {
-    return getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
-  };
 
   const Name = () => {
     const accountName = name || account?.name;
@@ -271,7 +268,7 @@ function Addresshowonly({ actions, address, children, className, genesisHash, is
               {formatted || address || t('<unknown>')}
             </div>
             <CopyToClipboard text={(formatted && formatted) || ''} >
-              <span onClick={_onCopy}><Copyico fill={getCSSVariable('--svgFill')} /></span>
+              <span onClick={_onCopy}><Copyico  /></span>
             </CopyToClipboard>
             {(actions || showVisibilityAction) && (
               <></>

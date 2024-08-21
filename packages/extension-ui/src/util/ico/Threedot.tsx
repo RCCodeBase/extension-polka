@@ -4,7 +4,7 @@
 import React from 'react';
 
 
-const Createico: React.FC = () => {
+const Threedotico: React.FC = () => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" width="27.643" height="27.643" viewBox="0 0 27.643 27.643">
             <g id="Group_21218" data-name="Group 21218" transform="translate(-8.1 -8.1)">
@@ -16,4 +16,4 @@ const Createico: React.FC = () => {
     );
 };
 
-export default Createico;
+export default Threedotico;

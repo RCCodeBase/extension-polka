@@ -9,7 +9,7 @@ import getNetworkMap from '@polkadot/extension-ui/util/getNetworkMap';
 
 import {
   AccountContext, Dropdownnext,
-  // ThemeSwitchContext 
+  ThemeSwitchContext 
 } from '../../components/index.js';
 import { useTranslation } from '../../hooks/index.js';
 import { Header } from '../../partials/index.js';
@@ -32,16 +32,16 @@ function Accounts({ className }: Props): React.ReactElement {
   const [isChecked, setIsChecked] = useState(false);
   const languageOptions = useMemo(() => getLanguageOptions(), []);
   // const [theme, setTheme] = useState(chooseTheme());
-  // const setThemeContext = useContext(ThemeSwitchContext);
+  const setThemeContext = useContext(ThemeSwitchContext);
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(event.target.checked);
   };
 
-  // useEffect(()=>{
-  //     const theme = isChecked ? 'dark' : 'light';
-  //     setThemeContext(theme);
-  // },[isChecked])
+  useEffect(()=>{
+      const theme = isChecked ? 'dark' : 'light';
+      setThemeContext(theme);
+  },[isChecked])
 
   useEffect(() => {
     setFilteredAccount(
