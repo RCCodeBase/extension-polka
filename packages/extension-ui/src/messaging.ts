@@ -15,6 +15,7 @@ import type { KeypairType } from '@polkadot/util-crypto/types';
 
 import { PORT_EXTENSION } from '@polkadot/extension-base/defaults';
 import { getId } from '@polkadot/extension-base/utils/getId';
+import { ensurePortConnection } from '@polkadot/extension-base/utils/portUtils';
 import { metadataExpand } from '@polkadot/extension-chains';
 
 import allChains from './util/chains.js';
@@ -30,11 +31,11 @@ interface Handler {
 
 type Handlers = Record<string, Handler>;
 
-const port = chrome.runtime.connect({ name: PORT_EXTENSION });
 const handlers: Handlers = {};
 
-// setup a listener for messages, any incoming resolves the promise
-port.onMessage.addListener((data: Message['data']): void => {
+let port: chrome.runtime.Port | undefined;
+
+function onPortMessageHandler (data: Message['data']): void {
   const handler = handlers[data.id];
 
   if (!handler) {
@@ -55,7 +56,17 @@ port.onMessage.addListener((data: Message['data']): void => {
   } else {
     handler.resolve(data.response);
   }
-});
+}
+
+function onPortDisconnectHandler (): void {
+  port = undefined;
+}
+
+const portConfig = {
+  onPortDisconnectHandler,
+  onPortMessageHandler,
+  portName: PORT_EXTENSION
+};
 
 function sendMessage<TMessageType extends MessageTypesWithNullRequest>(message: TMessageType): Promise<ResponseTypes[TMessageType]>;
 function sendMessage<TMessageType extends MessageTypesWithNoSubscriptions>(message: TMessageType, request: RequestTypes[TMessageType]): Promise<ResponseTypes[TMessageType]>;
@@ -66,7 +77,13 @@ function sendMessage<TMessageType extends MessageTypes> (message: TMessageType, 
 
     handlers[id] = { reject, resolve, subscriber };
 
-    port.postMessage({ id, message, request: request || {} });
+    ensurePortConnection(port, portConfig).then((connectedPort) => {
+      connectedPort.postMessage({ id, message, request: request || {} });
+      port = connectedPort;
+    }).catch((error) => {
+      console.error(`Failed to send message: ${(error as Error).message}`);
+      reject(error);
+    });
   });
 }
 
@@ -118,8 +135,8 @@ export async function approveSignPassword (id: string, savePass: boolean, passwo
   return sendMessage('pri(signing.approve.password)', { id, password, savePass });
 }
 
-export async function approveSignSignature (id: string, signature: HexString): Promise<boolean> {
-  return sendMessage('pri(signing.approve.signature)', { id, signature });
+export async function approveSignSignature (id: string, signature: HexString, signedTransaction?: HexString): Promise<boolean> {
+  return sendMessage('pri(signing.approve.signature)', { id, signature, signedTransaction });
 }
 
 export async function createAccountExternal (name: string, address: string, genesisHash: HexString | null): Promise<boolean> {
@@ -203,8 +220,8 @@ export async function updateAuthorization (authorizedAccounts: string[], url: st
   return sendMessage('pri(authorize.update)', { authorizedAccounts, url });
 }
 
-export async function deleteAuthRequest (requestId: string): Promise<void> {
-  return sendMessage('pri(authorize.delete.request)', requestId);
+export async function rejectAuthRequest (requestId: string): Promise<void> {
+  return sendMessage('pri(authorize.reject)', requestId);
 }
 
 export async function subscribeMetadataRequests (cb: (accounts: MetadataRequest[]) => void): Promise<boolean> {

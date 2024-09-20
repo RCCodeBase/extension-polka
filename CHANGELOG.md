@@ -1,5 +1,74 @@
 # CHANGELOG
 
+## 0.52.3 Aug 19, 2024
+
+Changes:
+
+- Upgrade polkadot-js/api to 12.4.1
+- Upgrade polkadot-js/phishing to 0.23.4
+
+
+## 0.52.2 Aug 16, 2024
+
+NOTE: This is strictly a patch release for the store.
+
+Changes:
+
+- Remove Alarm permissions ([#1449](https://github.com/polkadot-js/extension/pull/1449))
+
+
+## 0.52.1 Aug 14, 2024
+
+Contributed:
+
+- Send ping before subscriptions (Thanks to https://github.com/F-OBrien) ([#1441](https://github.com/polkadot-js/extension/pull/1441))
+- Fix SignArea and ToastProvider timeout (Thanks to https://github.com/F-OBrien) ([#1444](https://github.com/polkadot-js/extension/pull/1444))
+
+Changes:
+
+- Bump yarn to 4.4.0 ([#1442](https://github.com/polkadot-js/extension/pull/1442))
+- Enable "Chain Specific App" setting ([#1445](https://github.com/polkadot-js/extension/pull/1445))
+    - This allows for ledger apps that are not included in the Polkadot Generic App to work with their specific Ledger App
+- Fix setting rawMetadata as registry metadata ([#1446](https://github.com/polkadot-js/extension/pull/1446))
+
+
+## 0.51.1 Aug 7, 2024
+
+Contributed:
+
+- Update XCM Analyser to v1.3.1 (Thanks to https://github.com/dudo50) ([#1419](https://github.com/polkadot-js/extension/pull/1419))
+- Fix: ensure the service worker is awake before every port message (Thanks to https://github.com/F-OBrien) ([#1433](https://github.com/polkadot-js/extension/pull/1433))
+    - NOTE: The extension-base now exposes a set of functions for port connection stability.
+    - `setupPort`
+    - `wakeUpServiceWorker`
+    - `ensurePortConnection`
+
+Changes:
+
+- Bump yarn to 4.3.1 ([#1426](https://github.com/polkadot-js/extension/pull/1426))
+- Add CI script to check for diffs in src vs build for store release ([#1429](https://github.com/polkadot-js/extension/pull/1429)) ([#1436](https://github.com/polkadot-js/extension/pull/1436))
+- Change Connected to Connect Accounts ([#1430](https://github.com/polkadot-js/extension/pull/1430))
+- Upgrade Polkadot-js deps ([#1434](https://github.com/polkadot-js/extension/pull/1434)) ([#1435](https://github.com/polkadot-js/extension/pull/1435))
+    - polkadot/api 12.3.1
+    - polkadot/phishing 0.23.3
+    - polkadot/ui 3.8.3
+
+
+## 0.50.1 July 30, 2024
+
+Contributed:
+
+- Update subscribed accounts when connected site authorizations are modified (Thanks to https://github.com/F-OBrien)
+    - Deprecates `public udateCurrentTabsUrl` in `class State` in favor of `public updateCurrentTabsUrl`.
+
+Changes:
+
+- Add support for the Ledger Generic App (Thanks to https://github.com/bee344)
+- Add support for the Ledger Migration App (Thanks to https://github.com/bee344)
+    - Note: In order to use the ledger migration app, you must toggle the setting inside of settings. That will enable the migration app for use.
+- Fix extension stuck in ... loading ... screen after service_worker got terminated (Thanks to https://github.com/bee344)
+
+
 ## 0.49.3 July 19, 2024
 
 Changes:
