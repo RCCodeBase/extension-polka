@@ -5,6 +5,7 @@
   "{{name}} ({{size}} bytes)": "{{name}} ({{size}} octets)",
   "... loading ...": "... chargement ...",
   "Generated 12-word mnemonic seed:": "12 mots composant la phrase mnémotechnique:",
+  "Copy": "Copie",
   "Copy to clipboard": "Copier dans le presse-papier",
   "Back": "Retour",
   "Create new account (root or derived)": "Créer un nouveau compte (racine ou dérivé)",
@@ -153,5 +154,11 @@
   "Import Account": "Importer",
   "Sign on Ledger": "Signer sur Ledger",
   "Allow use on any chain": "Toutes les blockchains",
-  "Select network": "Sélectionner un réseau"
+  "Select network": "Sélectionner un réseau",
+  "Download a copy": "Télécharger une copie",
+  "Please write down your wallet's mnemonic seed and keep it in a safe place. The mnemonic can be used to restore your wallet.": "Veuillez noter la graine mnémonique de votre portefeuille et conservez-la dans un endroit sûr. Le mnémonique peut être utilisé pour restaurer votre portefeuille.",
+  "Complete verification":"Vérification complète",
+  "12 word MNEMONIC seed":"Graine MNÉMONIQUE de 12 mots",
+  "Create my account":"Créer mon compte",
+  "Confirm your recovery phrase by filling the empty space with the below words":"Confirmez votre phrase de récupération en remplissant l'espace vide avec les mots ci-dessous"
 }

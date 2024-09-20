@@ -1,30 +1,47 @@
-// Copyright 2019-2023 @polkadot/extension-ui authors & contributors
+// Copyright 2019-2024 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { AccountWithChildren } from '@polkadot/extension-base/background/types';
-import type { ThemeProps } from '../../types.js';
 
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
 import getNetworkMap from '@polkadot/extension-ui/util/getNetworkMap';
 
-import { AccountContext } from '../../components/index.js';
-import useTranslation from '../../hooks/useTranslation.js';
+import {
+  AccountContext, Dropdownnext,
+  ThemeSwitchContext 
+} from '../../components/index.js';
+import { useTranslation } from '../../hooks/index.js';
 import { Header } from '../../partials/index.js';
 import { styled } from '../../styled.js';
 import AccountsTree from './AccountsTree.js';
 import AddAccount from './AddAccount.js';
+import getLanguageOptions from '../../util/getLanguageOptions.js';
+import { settings } from '@polkadot/ui-settings';
 
-interface Props extends ThemeProps {
+interface Props {
   className?: string;
 }
 
-function Accounts ({ className }: Props): React.ReactElement {
+function Accounts({ className }: Props): React.ReactElement {
   const { t } = useTranslation();
   const [filter, setFilter] = useState('');
   const [filteredAccount, setFilteredAccount] = useState<AccountWithChildren[]>([]);
   const { hierarchy } = useContext(AccountContext);
   const networkMap = useMemo(() => getNetworkMap(), []);
+  const [isChecked, setIsChecked] = useState(false);
+  const languageOptions = useMemo(() => getLanguageOptions(), []);
+  // const [theme, setTheme] = useState(chooseTheme());
+  const setThemeContext = useContext(ThemeSwitchContext);
+
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(event.target.checked);
+  };
+
+  useEffect(()=>{
+      const theme = isChecked ? 'dark' : 'light';
+      setThemeContext(theme);
+  },[isChecked])
 
   useEffect(() => {
     setFilteredAccount(
@@ -42,6 +59,12 @@ function Accounts ({ className }: Props): React.ReactElement {
     setFilter(filter.toLowerCase());
   }, []);
 
+  const _onChangeLang = useCallback(
+    (value: string): void => {
+      settings.set({ i18nLang: value });
+    }, []
+  );
+
   return (
     <>
       {(hierarchy.length === 0)
@@ -52,9 +75,9 @@ function Accounts ({ className }: Props): React.ReactElement {
               onFilter={_onFilter}
               showAdd
               showConnectedAccounts
-              showSearch
+              // showSearch
               showSettings
-              text={t<string>('Accounts')}
+              text={t('Accounts')}
             />
             <div className={className}>
               {filteredAccount.map((json, index): React.ReactNode => (
@@ -64,6 +87,25 @@ function Accounts ({ className }: Props): React.ReactElement {
                 />
               ))}
             </div>
+            <div className="footer">
+              <div className="themdiv"><p>Light </p>
+                <label className="switch">
+                  <input type="checkbox"
+                    checked={isChecked}
+                    onChange={handleCheckboxChange} />
+                  <span className="slider round"></span>
+                </label><p> Dark</p>
+              </div>
+              <div>Manage website access</div>
+              <div>
+                <Dropdownnext
+                  className='dropdownfooter'
+                  label=''
+                  onChange={_onChangeLang}
+                  options={languageOptions}
+                  value={settings.i18nLang}
+                /></div>
+            </div>
           </>
         )
       }
@@ -71,14 +113,14 @@ function Accounts ({ className }: Props): React.ReactElement {
   );
 }
 
-export default styled(Accounts)`
+export default styled(Accounts) <Props>`
   height: calc(100vh - 2px);
   overflow-y: scroll;
   margin-top: -25px;
   padding-top: 25px;
   scrollbar-width: none;
 
-  &::-webkit-scrollbar {
+    &::-webkit-scrollbar {
     display: none;
   }
 `;

@@ -1,4 +1,4 @@
-// Copyright 2019-2023 @polkadot/extension-ui authors & contributors
+// Copyright 2019-2024 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
@@ -7,8 +7,7 @@ import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 import AccountNamePasswordCreation from '../../components/AccountNamePasswordCreation.js';
 import { AccountContext, ActionContext, Address } from '../../components/index.js';
-import useMetadata from '../../hooks/useMetadata.js';
-import useTranslation from '../../hooks/useTranslation.js';
+import { useMetadata, useTranslation } from '../../hooks/index.js';
 import { createAccountSuri } from '../../messaging.js';
 import { HeaderWithSteps } from '../../partials/index.js';
 import { DEFAULT_TYPE } from '../../util/defaultType.js';
@@ -20,7 +19,7 @@ export interface AccountInfo {
   suri: string;
 }
 
-function ImportSeed (): React.ReactElement {
+function ImportSeed(): React.ReactElement {
   const { t } = useTranslation();
   const { accounts } = useContext(AccountContext);
   const onAction = useContext(ActionContext);
@@ -29,7 +28,7 @@ function ImportSeed (): React.ReactElement {
   const [name, setName] = useState<string | null>(null);
   const [step1, setStep1] = useState(true);
   const [type, setType] = useState(DEFAULT_TYPE);
-  const chain = useMetadata(account && account.genesis, true);
+  const chain = useMetadata(account?.genesis, true);
 
   useEffect((): void => {
     !accounts.length && onAction();
@@ -43,12 +42,12 @@ function ImportSeed (): React.ReactElement {
     );
   }, [chain]);
 
-  const _onCreate = useCallback((name: string, password: string): void => {
+  const _onCreate = useCallback((password: string): void => {
     // this should always be the case
     if (name && password && account) {
       setIsBusy(true);
 
-      createAccountSuri(name, password, account.suri, type, account.genesis)
+      createAccountSuri(password, account.suri, type)
         .then(() => onAction('/'))
         .catch((error): void => {
           setIsBusy(false);
@@ -71,7 +70,7 @@ function ImportSeed (): React.ReactElement {
     <>
       <HeaderWithSteps
         step={step1 ? 1 : 2}
-        text={t<string>('Import account')}
+        text={t('Import account')}
       />
       <div>
         <Address
@@ -90,7 +89,7 @@ function ImportSeed (): React.ReactElement {
         )
         : (
           <AccountNamePasswordCreation
-            buttonLabel={t<string>('Add the account with the supplied seed')}
+            buttonLabel={t('Add the account with the supplied seed')}
             isBusy={isBusy}
             onBackClick={_onBackClick}
             onCreate={_onCreate}

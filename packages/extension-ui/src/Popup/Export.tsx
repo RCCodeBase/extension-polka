@@ -1,22 +1,21 @@
-// Copyright 2019-2023 @polkadot/extension-ui authors & contributors
+// Copyright 2019-2024 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { RouteComponentProps } from 'react-router';
-import type { ThemeProps } from '../types.js';
 
 import fileSaver from 'file-saver';
 import React, { useCallback, useContext, useState } from 'react';
 import { withRouter } from 'react-router';
 
-import { ActionBar, ActionContext, ActionText, Address, Button, InputWithLabel, Warning } from '../components/index.js';
-import useTranslation from '../hooks/useTranslation.js';
+import { ActionBar, ActionContext, ActionText, Addressnext, Button, InputWithLabelwhite, Warningmnemonic } from '../components/index.js';
+import { useTranslation } from '../hooks/index.js';
 import { exportAccount } from '../messaging.js';
 import { Header } from '../partials/index.js';
 import { styled } from '../styled.js';
 
 const MIN_LENGTH = 6;
 
-interface Props extends RouteComponentProps<{address: string}>, ThemeProps {
+interface Props extends RouteComponentProps<{address: string}> {
   className?: string;
 }
 
@@ -42,7 +41,6 @@ function Export ({ className, match: { params: { address } } }: Props): React.Re
   const _onExportButtonClick = useCallback(
     (): void => {
       setIsBusy(true);
-
       exportAccount(address, pass)
         .then(({ exportedJson }) => {
           const blob = new Blob([JSON.stringify(exportedJson)], { type: 'application/json; charset=utf-8' });
@@ -65,29 +63,30 @@ function Export ({ className, match: { params: { address } } }: Props): React.Re
     <>
       <Header
         showBackArrow
-        text={t<string>('Export account')}
+        text={t('Export account')}
       />
       <div className={className}>
-        <Address address={address}>
-          <Warning className='movedWarning'>
-            {t<string>("You are exporting your account. Keep it safe and don't share it with anyone.")}
-          </Warning>
+        <Addressnext address={address}    actions={null}>
+          <Warningmnemonic className='movedWarning'>
+            {t("You are exporting your account. Keep it safe and don't share it with anyone.")}
+          </Warningmnemonic>
           <div className='actionArea'>
-            <InputWithLabel
+            <InputWithLabelwhite
               data-export-password
               disabled={isBusy}
               isError={pass.length < MIN_LENGTH || !!error}
-              label={t<string>('password for this account')}
+              label={t('password for this account')}
               onChange={onPassChange}
+              placeholder='Password'
               type='password'
             />
             {error && (
-              <Warning
+              <Warningmnemonic
                 isBelowInput
                 isDanger
               >
                 {error}
-              </Warning>
+              </Warningmnemonic>
             )}
             <Button
               className='export-button'
@@ -97,17 +96,17 @@ function Export ({ className, match: { params: { address } } }: Props): React.Re
               isDisabled={pass.length === 0 || !!error}
               onClick={_onExportButtonClick}
             >
-              {t<string>('I want to export this account')}
+              {t('I want to export this account')}
             </Button>
             <ActionBar className='withMarginTop'>
               <ActionText
                 className='center'
                 onClick={_goHome}
-                text={t<string>('Cancel')}
+                text={t('Cancel')}
               />
             </ActionBar>
           </div>
-        </Address>
+        </Addressnext>
       </div>
     </>
   );

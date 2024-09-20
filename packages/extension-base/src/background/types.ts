@@ -1,4 +1,4 @@
-// Copyright 2019-2023 @polkadot/extension-base authors & contributors
+// Copyright 2019-2024 @polkadot/extension-base authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 /* eslint-disable no-use-before-define */
@@ -47,7 +47,7 @@ export type AccountWithChildren = AccountJson & {
   children?: AccountWithChildren[];
 }
 
-export type AccountsContext = {
+export interface AccountsContext {
   accounts: AccountJson[];
   hierarchy: AccountWithChildren[];
   master?: AccountJson;

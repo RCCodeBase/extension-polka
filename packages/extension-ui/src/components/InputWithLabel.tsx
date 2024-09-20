@@ -1,11 +1,11 @@
-// Copyright 2019-2023 @polkadot/extension-ui authors & contributors
+// Copyright 2019-2024 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useCallback, useState } from 'react';
 
-import useTranslation from '../hooks/useTranslation.js';
+import { useTranslation } from '../hooks/index.js';
 import { styled } from '../styled.js';
-import Label from './Label.js';
+// import Label from './Label.js';
 import { Input } from './TextInputs.js';
 import Warning from './Warning.js';
 
@@ -26,7 +26,7 @@ interface Props {
   withoutMargin?: boolean;
 }
 
-function InputWithLabel ({ className, defaultValue, disabled, isError, isFocused, isReadOnly, label = '', onBlur, onChange, onEnter, placeholder, type = 'text', value, withoutMargin }: Props): React.ReactElement<Props> {
+function InputWithLabel({ className, defaultValue, disabled, isError, isFocused, isReadOnly, label = '', onBlur, onChange, onEnter, placeholder, type = 'text', value, withoutMargin }: Props): React.ReactElement<Props> {
   const [isCapsLock, setIsCapsLock] = useState(false);
   const { t } = useTranslation();
 
@@ -53,10 +53,11 @@ function InputWithLabel ({ className, defaultValue, disabled, isError, isFocused
   );
 
   return (
-    <Label
-      className={`${className || ''} ${withoutMargin ? 'withoutMargin' : ''}`}
-      label={label}
-    >
+    // <Label
+    //   className={`${className || ''} ${withoutMargin ? 'withoutMargin' : ''}`}
+    //   label={label}
+    // >
+    <div className={`${className || ''} ${withoutMargin ? 'withoutMargin' : ''}`}>
       <Input
         autoCapitalize='off'
         autoCorrect='off'
@@ -66,23 +67,22 @@ function InputWithLabel ({ className, defaultValue, disabled, isError, isFocused
         onBlur={onBlur}
         onChange={_onChange}
         onKeyPress={_checkKey}
-        placeholder={placeholder}
+        placeholder={placeholder || label}
         readOnly={isReadOnly}
         spellCheck={false}
         type={type}
         value={value}
         withError={isError}
       />
-      { isCapsLock && (
-        <Warning isBelowInput>{t<string>('Warning: Caps lock is on')}</Warning>
+      {isCapsLock && (
+        <Warning isBelowInput>{t('Warning: Caps lock is on')}</Warning>
       )}
-    </Label>
+    </div>
   );
 }
 
-export default styled(InputWithLabel)`
-  margin-bottom: 16px;
-
+export default styled(InputWithLabel) <Props>`
+  width:60%;
   &.withoutMargin {
     margin-bottom: 0px;
 

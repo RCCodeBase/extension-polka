@@ -1,11 +1,10 @@
-// Copyright 2019-2023 @polkadot/extension-ui authors & contributors
+// Copyright 2019-2024 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-/// <reference types="@polkadot/dev-test/globals" />
 
 import '@polkadot/extension-mocks/chrome';
 
 import type { ReactWrapper } from 'enzyme';
+import type * as _ from '@polkadot/dev-test/globals.d.ts';
 import type { AccountJson } from '@polkadot/extension-base/background/types';
 import type { IconTheme } from '@polkadot/react-identicon/types';
 import type { HexString } from '@polkadot/util/types';
@@ -148,9 +147,9 @@ const getWrapper = async (account: AccountJson, contextAccounts: AccountJson[], 
   // In case the account is not in the context, then more info are needed as props
   // to display accurately
   const mountedComponent = withAccountsInContext
-  // only the address is passed as props, the full acount info are loaded in the context
+    // only the address is passed as props, the full acount info are loaded in the context
     ? await mountComponent({ address: account.address }, contextAccounts)
-  // the context is empty, all account's info are passed as props to the Address component
+    // the context is empty, all account's info are passed as props to the Address component
     : await mountComponent(account, []);
 
   return mountedComponent.wrapper;
@@ -342,7 +341,7 @@ describe('Address', () => {
     });
 
     it('shows the parent account and suri', () => {
-      const expectedParentNameSuri = getParentNameSuri(childAccount.parentName as string, childAccount.suri);
+      const expectedParentNameSuri = getParentNameSuri(childAccount.parentName, childAccount.suri);
 
       expect(wrapper.find('.parentName').text()).toEqual(expectedParentNameSuri);
     });

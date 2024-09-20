@@ -1,13 +1,11 @@
-// Copyright 2019-2023 @polkadot/extension-ui authors & contributors
+// Copyright 2019-2024 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-import type { ThemeProps } from '../types.js';
 
 import React from 'react';
 
 import { styled } from '../styled.js';
 
-interface Props extends ThemeProps {
+interface Props {
   className?: string;
   children: React.ReactNode;
 }
@@ -20,11 +18,9 @@ function ButtonArea ({ children, className }: Props): React.ReactElement<Props> 
   );
 }
 
-export default styled(ButtonArea)(({ theme }: ThemeProps) => `
+export default styled(ButtonArea)<Props>`
   display: flex;
   flex-direction: row;
-  background: ${theme.highlightedAreaBackground};
-  border-top: 1px solid ${theme.inputBorderColor};
   padding: 12px 24px;
   margin-left: 0;
   margin-right: 0;
@@ -32,4 +28,4 @@ export default styled(ButtonArea)(({ theme }: ThemeProps) => `
   & > button:not(:last-of-type) {
     margin-right: 8px;
   }
-`);
+`;

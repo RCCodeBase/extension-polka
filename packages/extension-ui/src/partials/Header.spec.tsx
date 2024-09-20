@@ -1,19 +1,16 @@
-// Copyright 2019-2023 @polkadot/extension-ui authors & contributors
+// Copyright 2019-2024 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-/// <reference types="@polkadot/dev-test/globals" />
 
 import '@polkadot/extension-mocks/chrome';
 
 import type { ReactWrapper } from 'enzyme';
+import type * as _ from '@polkadot/dev-test/globals.d.ts';
 
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import enzyme from 'enzyme';
 import React from 'react';
 import { MemoryRouter } from 'react-router';
-import { ThemeProvider } from 'styled-components';
 
-import { themes } from '../components/index.js';
 import Header from './Header.js';
 import Settings from './MenuSettings.js';
 
@@ -27,10 +24,7 @@ describe('Header component', () => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   const mountHeader = (props: React.ComponentProps<typeof Header> = {}): ReactWrapper => mount(
     <MemoryRouter>
-      <ThemeProvider theme={themes.dark}>
-        <Header {...props}>
-        </Header>
-      </ThemeProvider>
+      <Header {...props} />
     </MemoryRouter>);
 
   it('gear icon is not highlighted when settings are hidden', () => {

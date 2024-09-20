@@ -1,9 +1,8 @@
-// Copyright 2019-2023 @polkadot/extension-ui authors & contributors
+// Copyright 2019-2024 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import type { MouseEventHandler } from 'react';
-import type { ThemeProps } from '../types.js';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
@@ -17,7 +16,7 @@ interface Props {
   text: string;
 }
 
-function ActionText ({ className, icon, onClick, text }: Props): React.ReactElement<Props> {
+function ActionText({ className, icon, onClick, text }: Props): React.ReactElement<Props> {
   return (
     <div
       className={className}
@@ -29,21 +28,20 @@ function ActionText ({ className, icon, onClick, text }: Props): React.ReactElem
   );
 }
 
-export default styled(ActionText)(({ theme }: ThemeProps) => `
+export default styled(ActionText) <Props>`
   cursor: pointer;
 
   span {
-    color: ${theme.labelColor}
-    font-size: ${theme.labelFontSize};
-    line-height: ${theme.labelLineHeight};
-    text-decoration-line: underline;
+    color: var(--labelColor);
+    font-size: var(--labelFontSize);
+    line-height: var(--labelLineHeight);
   }
 
   .svg-inline--fa {
-    color: ${theme.iconNeutralColor};
+    color: var(--iconNeutralColor);
     display: inline-block;
     margin-right: 0.3rem;
     position: relative;
     top: 2px;
   }
-`);
+`;

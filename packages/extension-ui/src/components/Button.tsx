@@ -1,24 +1,22 @@
-// Copyright 2019-2023 @polkadot/extension-ui authors & contributors
+// Copyright 2019-2024 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-import type { ThemeProps } from '../types.js';
 
 import React, { useCallback } from 'react';
 
 import { styled } from '../styled.js';
 import Spinner from './Spinner.js';
 
-interface Props extends ThemeProps {
+export interface ButtonProps {
   className?: string;
   children?: React.ReactNode;
   isBusy?: boolean;
   isDanger?: boolean;
   isDisabled?: boolean;
-  onClick?: () => void | Promise<void | boolean>;
+  onClick?: () => void | Promise<void | boolean> | null;
   to?: string;
 }
 
-function Button ({ children, className = '', isBusy, isDisabled, onClick, to }: Props): React.ReactElement<Props> {
+function Button({ children, className = '', isBusy, isDisabled, onClick, to }: ButtonProps): React.ReactElement<ButtonProps> {
   const _onClick = useCallback(
     (): void => {
       if (isBusy || isDisabled) {
@@ -47,28 +45,28 @@ function Button ({ children, className = '', isBusy, isDisabled, onClick, to }: 
   );
 }
 
-export default styled(Button)(({ isDanger, theme }: Props) => `
-  background: ${isDanger ? theme.buttonBackgroundDanger : theme.buttonBackground};
+export default styled(Button)<ButtonProps>(({ isDanger }) => `
+  background: var(${isDanger ? '--buttonBackgroundDanger' : '--btnBackground'});
   cursor: pointer;
   display: block;
   width: 100%;
   height: ${isDanger ? '40px' : '48px'};
   box-sizing: border-box;
-  border: none;
-  border-radius: ${theme.borderRadius};
-  color: ${theme.buttonTextColor};
+ border: 1px solid var(--liColor);
+  border-radius: var(--btnRadius);
+  color: var(--buttonTextColor);
   font-size: 15px;
   line-height: 20px;
   padding: 0 1rem;
   position: relative;
-  text-align: center;
+  text-align: center; 
 
   &:disabled {
     cursor: default;
   }
 
   &:not(:disabled):hover {
-    background: ${isDanger ? theme.buttonBackgroundDangerHover : theme.buttonBackgroundHover};
+    background: var(${isDanger ? '--buttonBackgroundDangerHover' : '--buttonBackgroundHover'});
   }
 
   .busyOverlay,
@@ -77,8 +75,9 @@ export default styled(Button)(({ isDanger, theme }: Props) => `
   }
 
   .disabledOverlay {
-    background: rgba(96,96,96,0.75);
-    border-radius: ${theme.borderRadius};
+  background: rgb(235 224 224 / 75%);
+    // border-radius: var(--borderRadius);
+    border-radius: var(--btnRadius);
     bottom: 0;
     left: 0;
     position: absolute;

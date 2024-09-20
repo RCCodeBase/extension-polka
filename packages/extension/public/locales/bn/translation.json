@@ -5,6 +5,7 @@
     "{{name}} ({{size}} bytes)": "{{name}} ({{size}} বাইট)",
     "... loading ...": "... লোড হচ্ছে ...",
     "Generated 12-word mnemonic seed:": "উৎপন্ন ১২-শব্দের নেমোনিক সীডঃ",
+    "Copy": "কপি",
     "Copy to clipboard": "লিপবোর্ডে কপি করুন",
     "Back": "পিছনে",
     "Create new account (root or derived)": "নতুন অ্যাকাউন্ট তৈরি করুন (মূল বা উদ্ভূত)",
@@ -31,7 +32,7 @@
     "You currently don't have any accounts. Create your first account to get started.": "বর্তমানে আপনার কোন অ্যাকাউন্ট নেই। শুরু করার জন্য আপনার প্রথম অ্যাকাউন্ট তৈরি করুন।",
     "Accounts": "অ্যাকাউন্টসমূহ",
     "Authorize": "অনুমোদন করুন",
-    "Only approve this request if you trust the application. Approving gives the application access to the addresses of your accounts.":"অ্যাপ্লিকেশনটি যদি আপনার বিশ্বস্ত হলেই শুধু আবেদনটি অনুমোদন করবেন। অনুমোদিত হলে অ্যাপ্লিকেশনটি আপনার অ্যাকাউন্টের ঠিকানাগুলোতে প্রবেশাধিকার পাবে।",
+    "Only approve this request if you trust the application. Approving gives the application access to the addresses of your accounts.": "অ্যাপ্লিকেশনটি যদি আপনার বিশ্বস্ত হলেই শুধু আবেদনটি অনুমোদন করবেন। অনুমোদিত হলে অ্যাপ্লিকেশনটি আপনার অ্যাকাউন্টের ঠিকানাগুলোতে প্রবেশাধিকার পাবে।",
     "Yes, allow this application access": "হ্যাঁ, এই অ্যাপ্লিকেশনটিকে অনুমতি দিন",
     "Add the account with the generated seed": "উৎপন্ন সীডের সাথে অ্যাকাউন্টেটি যুক্ত করুন",
     "Create an account": "একটি অ্যাকাউন্ট তৈরি করুন",
@@ -158,5 +159,11 @@
     "Export all accounts": "সমস্ত অ্যাকাউন্ট এক্সপোর্ট করুন",
     "All account": "সমস্ত অ্যাকাউন্ট",
     "password for encrypting all accounts": "সকল অ্যাকাউন্ট এনক্রিপ্ট করার জন্য পাসওয়ার্ড",
-    "I want to export all my accounts": "আমি আমার সকল অ্যাকাউন্ট এক্সপোর্ট করতে চাই"
+    "I want to export all my accounts": "আমি আমার সকল অ্যাকাউন্ট এক্সপোর্ট করতে চাই",
+    "Download a copy": "একটি অনুলিপি ডাউনলোড করুন",
+    "Please write down your wallet's mnemonic seed and keep it in a safe place. The mnemonic can be used to restore your wallet.": "অনুগ্রহ করে আপনার মানিব্যাগের স্মৃতিবিজড়িত বীজ লিখে রাখুন এবং এটি একটি নিরাপদ স্থানে রাখুন। আপনার মানিব্যাগ পুনরুদ্ধার করতে স্মৃতিচিহ্নটি ব্যবহার করা যেতে পারে।",
+    "Complete verification":"সম্পূর্ণ যাচাইকরণ",
+    "12 word MNEMONIC seed":"12 শব্দ MNEMONIC বীজ",
+    "Create my account":"আমার একাউন্ট তৈরি কর",
+    "Confirm your recovery phrase by filling the empty space with the below words":"নীচের শব্দগুলি দিয়ে খালি স্থান পূরণ করে আপনার পুনরুদ্ধার বাক্যাংশটি নিশ্চিত করুন৷"
 }

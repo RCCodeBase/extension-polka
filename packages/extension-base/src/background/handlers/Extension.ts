@@ -1,4 +1,4 @@
-// Copyright 2019-2023 @polkadot/extension-base authors & contributors
+// Copyright 2019-2024 @polkadot/extension-base authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 /* global chrome */
@@ -15,7 +15,7 @@ import type State from './State.js';
 import { ALLOWED_PATH, PASSWORD_EXPIRY_MS } from '@polkadot/extension-base/defaults';
 import { metadataExpand } from '@polkadot/extension-chains';
 import { TypeRegistry } from '@polkadot/types';
-import keyring from '@polkadot/ui-keyring';
+import { keyring } from '@polkadot/ui-keyring';
 import { accounts as accountsObservable } from '@polkadot/ui-keyring/observable/accounts';
 import { assert, isHex } from '@polkadot/util';
 import { keyExtractSuri, mnemonicGenerate, mnemonicValidate } from '@polkadot/util-crypto';
@@ -116,24 +116,24 @@ export default class Extension {
     };
   }
 
-  private accountsForget ({ address }: RequestAccountForget): boolean {
+  private async accountsForget ({ address }: RequestAccountForget): Promise<boolean> {
     const authorizedAccountsDiff: AuthorizedAccountsDiff = [];
 
     // cycle through authUrls and prepare the array of diff
     Object.entries(this.#state.authUrls).forEach(([url, urlInfo]) => {
-      if (!urlInfo.authorizedAccounts.includes(address)) {
-        return;
+      // Note that urlInfo.authorizedAccounts may be undefined if this website entry
+      // was created before the "account authorization per website" functionality was introduced
+      if (urlInfo.authorizedAccounts?.includes(address)) {
+        authorizedAccountsDiff.push([url, urlInfo.authorizedAccounts.filter((previousAddress) => previousAddress !== address)]);
       }
-
-      authorizedAccountsDiff.push([url, urlInfo.authorizedAccounts.filter((previousAddress) => previousAddress !== address)]);
     });
 
-    this.#state.updateAuthorizedAccounts(authorizedAccountsDiff);
+    await this.#state.updateAuthorizedAccounts(authorizedAccountsDiff);
 
-    // cycle through default account selection for auth and remove any occurence of the account
+    // cycle through default account selection for auth and remove any occurrence of the account
     const newDefaultAuthAccounts = this.#state.defaultAuthAccountSelection.filter((defaultSelectionAddress) => defaultSelectionAddress !== address);
 
-    this.#state.updateDefaultAuthAccounts(newDefaultAuthAccounts);
+    await this.#state.updateDefaultAuthAccounts(newDefaultAuthAccounts);
 
     keyring.forgetAccount(address);
 
@@ -212,8 +212,8 @@ export default class Extension {
     return true;
   }
 
-  private authorizeUpdate ({ authorizedAccounts, url }: RequestUpdateAuthorizedAccounts): void {
-    return this.#state.updateAuthorizedAccounts([[url, authorizedAccounts]]);
+  private async authorizeUpdate ({ authorizedAccounts, url }: RequestUpdateAuthorizedAccounts): Promise<void> {
+    return await this.#state.updateAuthorizedAccounts([[url, authorizedAccounts]]);
   }
 
   private getAuthList (): ResponseAuthorizeList {
@@ -235,14 +235,14 @@ export default class Extension {
     return true;
   }
 
-  private metadataApprove ({ id }: RequestMetadataApprove): boolean {
+  private async metadataApprove ({ id }: RequestMetadataApprove): Promise<boolean> {
     const queued = this.#state.getMetaRequest(id);
 
     assert(queued, 'Unable to find request');
 
     const { request, resolve } = queued;
 
-    this.#state.saveMetadata(request);
+    await this.#state.saveMetadata(request);
 
     resolve(true);
 
@@ -467,7 +467,7 @@ export default class Extension {
   }
 
   private windowOpen (path: AllowedPath): boolean {
-    const url = `${chrome.extension.getURL('index.html')}#${path}`;
+    const url = `${chrome.runtime.getURL('index.html')}#${path}`;
 
     if (!ALLOWED_PATH.includes(path)) {
       console.error('Not allowed to open the url:', url);
@@ -518,8 +518,10 @@ export default class Extension {
     return true;
   }
 
-  private removeAuthorization (url: string): ResponseAuthorizeList {
-    return { list: this.#state.removeAuthorization(url) };
+  private async removeAuthorization (url: string): Promise<ResponseAuthorizeList> {
+    const remAuth = await this.#state.removeAuthorization(url);
+
+    return { list: remAuth };
   }
 
   private deleteAuthRequest (requestId: string): void {
@@ -593,7 +595,7 @@ export default class Extension {
         return this.accountsValidate(request as RequestAccountValidate);
 
       case 'pri(metadata.approve)':
-        return this.metadataApprove(request as RequestMetadataApprove);
+        return await this.metadataApprove(request as RequestMetadataApprove);
 
       case 'pri(metadata.get)':
         return this.metadataGet(request as string);

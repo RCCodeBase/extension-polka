@@ -1,4 +1,4 @@
-// Copyright 2019-2023 @polkadot/extension-dapp authors & contributors
+// Copyright 2019-2024 @polkadot/extension-dapp authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { InjectedAccount, InjectedAccountWithMeta, InjectedExtension, InjectedProviderWithMeta, InjectedWindow, ProviderList, Unsubcall, Web3AccountsOptions } from '@polkadot/extension-inject/types';
@@ -156,8 +156,8 @@ export function web3Enable (originName: string, compatInits: (() => Promise<bool
 /**
  * @summary Retrieves all the accounts across all providers
  * @description
- * This returns the full list of account available (accross all extensions) to
- * the page. Filtereing options are available of a per-extension, per type and
+ * This returns the full list of account available (across all extensions) to
+ * the page. Filtering options are available of a per-extension, per type and
  * per-genesisHash basis. Optionally the accounts can be encoded with the provided
  * ss58Format
  */

@@ -1,4 +1,4 @@
-// Copyright 2019-2023 @polkadot/extension-ui authors & contributors
+// Copyright 2019-2024 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { AccountJson, AccountsContext, AuthorizeRequest, MetadataRequest, SigningRequest } from '@polkadot/extension-base/background/types';
@@ -9,7 +9,7 @@ import { Route, Switch, useHistory } from 'react-router';
 
 import { PHISHING_PAGE_REDIRECT } from '@polkadot/extension-base/defaults';
 import { canDerive } from '@polkadot/extension-base/utils';
-import uiSettings from '@polkadot/ui-settings';
+import { settings } from '@polkadot/ui-settings';
 
 import { AccountContext, ActionContext, AuthorizeReqContext, MediaContext, MetadataReqContext, SettingsContext, SigningReqContext } from '../components/contexts.js';
 import { ErrorBoundary, Loading } from '../components/index.js';
@@ -34,10 +34,10 @@ import PhishingDetected from './PhishingDetected.js';
 import RestoreJson from './RestoreJson.js';
 import Welcome from './Welcome.js';
 
-const startSettings = uiSettings.get();
+const startSettings = settings.get();
 
 // Request permission for video, based on access we can hide/show import
-async function requestMediaAccess (cameraOn: boolean): Promise<boolean> {
+async function requestMediaAccess(cameraOn: boolean): Promise<boolean> {
   if (!cameraOn) {
     return false;
   }
@@ -53,7 +53,7 @@ async function requestMediaAccess (cameraOn: boolean): Promise<boolean> {
   return false;
 }
 
-function initAccountContext ({ accounts, selectedAccounts, setSelectedAccounts }: Omit<AccountsContext, 'hierarchy' | 'master'>): AccountsContext {
+function initAccountContext({ accounts, selectedAccounts, setSelectedAccounts }: Omit<AccountsContext, 'hierarchy' | 'master'>): AccountsContext {
   const hierarchy = buildHierarchy(accounts);
   const master = hierarchy.find(({ isExternal, type }) => !isExternal && canDerive(type));
 
@@ -66,7 +66,7 @@ function initAccountContext ({ accounts, selectedAccounts, setSelectedAccounts }
   };
 }
 
-export default function Popup (): React.ReactElement {
+export default function Popup(): React.ReactElement {
   const [accounts, setAccounts] = useState<null | AccountJson[]>(null);
   const [accountCtx, setAccountCtx] = useState<AccountsContext>({ accounts: [], hierarchy: [] });
   const [selectedAccounts, setSelectedAccounts] = useState<AccountJson['address'][]>([]);
@@ -79,10 +79,11 @@ export default function Popup (): React.ReactElement {
   const [settingsCtx, setSettingsCtx] = useState<SettingsStruct>(startSettings);
   const history = useHistory();
 
+  console.log('WINDOW; ', window);
+
   const _onAction = useCallback(
     (to?: string): void => {
       setWelcomeDone(window.localStorage.getItem('welcome_read') === 'ok');
-
       if (!to) {
         return;
       }
@@ -105,13 +106,13 @@ export default function Popup (): React.ReactElement {
       subscribeSigningRequests(setSignRequests)
     ]).catch(console.error);
 
-    uiSettings.on('change', (settings): void => {
-      setSettingsCtx(settings);
-      setCameraOn(settings.camera === 'on');
+    settings.on('change', (uiSettings): void => {
+      setSettingsCtx(uiSettings);
+      setCameraOn(uiSettings.camera === 'on');
     });
 
     _onAction();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect((): void => {
@@ -124,16 +125,16 @@ export default function Popup (): React.ReactElement {
       .catch(console.error);
   }, [cameraOn]);
 
-  function wrapWithErrorBoundary (component: React.ReactElement, trigger?: string): React.ReactElement {
+  function wrapWithErrorBoundary(component: React.ReactElement, trigger?: string): React.ReactElement {
     return <ErrorBoundary trigger={trigger}>{component}</ErrorBoundary>;
   }
 
   const Root = isWelcomeDone
-    ? authRequests && authRequests.length
+    ? authRequests?.length
       ? wrapWithErrorBoundary(<Authorize />, 'authorize')
-      : metaRequests && metaRequests.length
+      : metaRequests?.length
         ? wrapWithErrorBoundary(<Metadata />, 'metadata')
-        : signRequests && signRequests.length
+        : signRequests?.length
           ? wrapWithErrorBoundary(<Signing />, 'signing')
           : wrapWithErrorBoundary(<Accounts />, 'accounts')
     : wrapWithErrorBoundary(<Welcome />, 'welcome');

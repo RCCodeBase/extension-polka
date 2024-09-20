@@ -1,11 +1,10 @@
-// Copyright 2019-2023 @polkadot/extension-ui authors & contributors
+// Copyright 2019-2024 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-/// <reference types="@polkadot/dev-test/globals" />
 
 import '@polkadot/extension-mocks/chrome';
 
 import type { ReactWrapper } from 'enzyme';
+import type * as _ from '@polkadot/dev-test/globals.d.ts';
 import type { AccountJson, ResponseDeriveValidate } from '@polkadot/extension-base/background/types';
 
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
@@ -13,9 +12,8 @@ import enzyme from 'enzyme';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { MemoryRouter, Route } from 'react-router';
-import { ThemeProvider } from 'styled-components';
 
-import { AccountContext, ActionContext, themes } from '../../components/index.js';
+import { AccountContext, ActionContext } from '../../components/index.js';
 import * as messaging from '../../messaging.js';
 import { flushAllPromises } from '../../testHelpers.js';
 import { buildHierarchy } from '../../util/buildHierarchy.js';
@@ -68,11 +66,9 @@ describe('Derive', () => {
               hierarchy: buildHierarchy(accounts)
             }}
           >
-            <ThemeProvider theme={themes.dark}>
-              <Route path='/account/derive/:address'>
-                <Derive isLocked={locked} />
-              </Route>
-            </ThemeProvider>
+            <Route path='/account/derive/:address'>
+              <Derive isLocked={locked} />
+            </Route>
           </AccountContext.Provider>
         </ActionContext.Provider>
       </MemoryRouter>

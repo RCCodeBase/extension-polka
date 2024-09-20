@@ -1,24 +1,23 @@
-// Copyright 2019-2023 @polkadot/extension-ui authors & contributors
+// Copyright 2019-2024 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ThemeProps } from '../types.js';
-
-import { faArrowLeft, faCog, faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faCog, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 
-import logo from '../assets/pjs.svg';
+import logo from '../assets/cord.svg';
+// import createicon from '../assets/createico.svg';
 import { ActionContext } from '../components/index.js';
 import InputFilter from '../components/InputFilter.js';
 import Link from '../components/Link.js';
-import useOutsideClick from '../hooks/useOutsideClick.js';
-import useTranslation from '../hooks/useTranslation.js';
+import { useOutsideClick, useTranslation } from '../hooks/index.js';
 import { getConnectedTabsUrl } from '../messaging.js';
 import { styled } from '../styled.js';
 import MenuAdd from './MenuAdd.js';
 import MenuSettings from './MenuSettings.js';
+import Createico from '../util/ico/Createico';
 
-interface Props extends ThemeProps {
+interface Props {
   children?: React.ReactNode;
   className?: string;
   onFilter?: (filter: string) => void;
@@ -31,7 +30,7 @@ interface Props extends ThemeProps {
   text?: React.ReactNode;
 }
 
-function Header ({ children, className = '', onFilter, showAdd, showBackArrow, showConnectedAccounts, showSearch, showSettings, smallMargin = false, text }: Props): React.ReactElement<Props> {
+function Header({ children, className = '', onFilter, showAdd, showBackArrow, showConnectedAccounts, showSearch, showSettings, smallMargin = false, text }: Props): React.ReactElement<Props> {
   const [isAddOpen, setShowAdd] = useState(false);
   const [isSettingsOpen, setShowSettings] = useState(false);
   const [isSearchOpen, setShowSearch] = useState(false);
@@ -116,7 +115,10 @@ function Header ({ children, className = '', onFilter, showAdd, showBackArrow, s
               />
             )
           }
-          <span className='logoText'>{text || 'polkadot{.js}'}</span>
+          {text ?
+            (<span className='logoText'>{text}</span>) :
+            (<span className='logoText'> <span className='logoh3head'>CORD</span> Network</span>)}
+          {/* <span className='logoText'>{text || 'CORD Network'}</span> */}
         </div>
         {showSearch && (
           <div className={`searchBarWrapper ${isSearchOpen ? 'selected' : ''}`}>
@@ -134,7 +136,7 @@ function Header ({ children, className = '', onFilter, showAdd, showBackArrow, s
               <InputFilter
                 className='inputFilter'
                 onChange={_onChangeFilter}
-                placeholder={t<string>('Search by name or network...')}
+                placeholder={t('Search by name or network...')}
                 value={filter}
                 withReset
               />
@@ -154,11 +156,7 @@ function Header ({ children, className = '', onFilter, showAdd, showBackArrow, s
               onClick={_toggleAdd}
               ref={addIconRef}
             >
-              <FontAwesomeIcon
-                className={`plusIcon ${isAddOpen ? 'selected' : ''}`}
-                icon={faPlusCircle}
-                size='lg'
-              />
+              <Createico />
             </div>
           )}
           {showSettings && (
@@ -174,7 +172,7 @@ function Header ({ children, className = '', onFilter, showAdd, showBackArrow, s
                 size='lg'
               />
             </div>
-          )}
+          )} 
         </div>
         {isAddOpen && (
           <MenuAdd reference={addMenuRef} />
@@ -188,14 +186,15 @@ function Header ({ children, className = '', onFilter, showAdd, showBackArrow, s
   );
 }
 
-export default React.memo(styled(Header)(({ theme }: Props) => `
+export default React.memo(styled(Header) <Props>`
   max-width: 100%;
   box-sizing: border-box;
   font-weight: normal;
   margin: 0;
   position: relative;
   margin-bottom: 25px;
-
+  background: var(--headerBackground);
+  border-bottom: 1px solid #40172F;
   && {
     padding: 0 0 0;
   }
@@ -204,15 +203,16 @@ export default React.memo(styled(Header)(({ theme }: Props) => `
     display: flex;
     justify-content: space-between;
     width: 100%;
-    border-bottom: 1px solid ${theme.inputBorderColor};
+    border-bottom: 1px solid var(--inputBorderColor);
     min-height: 70px;
+
 
     .branding {
       display: flex;
       justify-content: center;
       align-items: center;
-      color: ${theme.labelColor};
-      font-family: ${theme.fontFamily};
+      color: var(--labelColor);
+      font-family: var(--fontFamily);
       text-align: center;
       margin-left: 24px;
 
@@ -223,8 +223,8 @@ export default React.memo(styled(Header)(({ theme }: Props) => `
       }
 
       .logoText {
-        color: ${theme.textColor};
-        font-family: ${theme.fontFamily};
+        color: var(--textColor);
+        font-family: var(--fontFamily);
         font-size: 20px;
         line-height: 27px;
       }
@@ -232,6 +232,12 @@ export default React.memo(styled(Header)(({ theme }: Props) => `
 
     .popupMenus, .searchBarWrapper {
       align-self: center;
+    }
+
+    .createico {
+        width: 28px;
+        height: 28px;
+       fill: green;
     }
 
     .connectedAccountsWrapper {
@@ -242,14 +248,14 @@ export default React.memo(styled(Header)(({ theme }: Props) => `
     }
 
     .connectedAccounts {
-      border: 1px solid ${theme.inputBorderColor};
+      border: 1px solid var(--inputBorderColor);
       border-radius: 4px;
       padding: 0 0.5rem;
 
       .greenDot {
         margin-right: 0.3rem;
         font-size: 1.5rem;
-        color: ${theme.connectedDotColor};
+        color: var(--connectedDotColor);
         padding-bottom: 0.2rem;
       }
     }
@@ -292,20 +298,28 @@ export default React.memo(styled(Header)(({ theme }: Props) => `
   }
 
   .plusIcon, .cogIcon, .searchIcon {
-    color: ${theme.iconNeutralColor};
+    color: var(--iconNeutralColor);
 
     &.selected {
-      color: ${theme.primaryColor};
+      color: var(--primaryColor);
     }
   }
 
   .arrowLeftIcon {
-    color: ${theme.labelColor};
+    color: var(--labelColor);
     margin-right: 1rem;
     cursor: pointer;
+  }
+  .logoh3head{
+   font-style: normal;
+  font-variant: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 27px;
+  font-family: Rubik;
   }
 
   &.smallMargin {
     margin-bottom: 15px;
   }
-`));
+`);

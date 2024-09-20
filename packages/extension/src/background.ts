@@ -1,4 +1,4 @@
-// Copyright 2019-2023 @polkadot/extension authors & contributors
+// Copyright 2019-2024 @polkadot/extension authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // Runs in the extension background, handling all keyring access
@@ -12,12 +12,12 @@ import type { RequestSignatures, TransportRequestMessage } from '@polkadot/exten
 import { handlers, withErrorLog } from '@polkadot/extension-base/background';
 import { PORT_CONTENT, PORT_EXTENSION } from '@polkadot/extension-base/defaults';
 import { AccountsStore } from '@polkadot/extension-base/stores';
-import keyring from '@polkadot/ui-keyring';
+import { keyring } from '@polkadot/ui-keyring';
 import { assert } from '@polkadot/util';
 import { cryptoWaitReady } from '@polkadot/util-crypto';
 
 // setup the notification (same a FF default background, white text)
-withErrorLog(() => chrome.browserAction.setBadgeBackgroundColor({ color: '#d90000' }));
+withErrorLog(() => chrome.action.setBadgeBackgroundColor({ color: '#d90000' }));
 
 // listen to all messages and handle appropriately
 chrome.runtime.onConnect.addListener((port): void => {

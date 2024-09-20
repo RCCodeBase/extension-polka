@@ -1,4 +1,4 @@
-// Copyright 2019-2023 @polkadot/extension-ui authors & contributors
+// Copyright 2019-2024 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useCallback, useState } from 'react';
@@ -15,12 +15,18 @@ interface Props {
   onPasswordChange?: (password: string) => void;
 }
 
-function AccountNamePasswordCreation ({ buttonLabel, isBusy, onBackClick, onCreate, onNameChange, onPasswordChange }: Props): React.ReactElement<Props> {
+function AccountNamePasswordCreation({ buttonLabel, isBusy, onBackClick, onCreate, onNameChange, onPasswordChange }: Props): React.ReactElement<Props> {
   const [name, setName] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
 
   const _onCreate = useCallback(
-    () => name && password && onCreate(name, password),
+    (): void => {
+      if (name && password) {
+        Promise
+          .resolve(onCreate(name, password))
+          .catch(console.error);
+      }
+    },
     [name, password, onCreate]
   );
 

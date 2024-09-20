@@ -1,12 +1,10 @@
-// Copyright 2019-2023 @polkadot/extension-ui authors & contributors
+// Copyright 2019-2024 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-import type { ThemeProps } from '../types.js';
 
 import React from 'react';
 import styled from 'styled-components';
 
-import Label from './Label.js';
+// import Label from './Label.js';
 
 interface Props {
   className?: string;
@@ -14,31 +12,40 @@ interface Props {
   value?: string;
 }
 
-function BoxWithLabel ({ className, label, value }: Props): React.ReactElement<Props> {
+function BoxWithLabel ({ className,label, value }: Props): React.ReactElement<Props> {
   return (
-    <Label
+    <div className={className}>
+    <p className='labelseed'>{label}</p>
+    {/* <Label
       className={className}
       label={label}
-    >
+    > */}
       <div className='seedBox'>
         <span>{value}</span>
       </div>
-    </Label>
+    {/* </Label> */}
+    </div>
   );
 }
 
-export default styled(BoxWithLabel)(({ theme }: ThemeProps) => `
+export default styled(BoxWithLabel)<Props>`
+     .labelseed {
+    margin: 0px;
+    padding-bottom: 10px;
+    font: normal normal medium 16px/19px Rubik;
+    }
   .seedBox {
-    background: ${theme.readonlyInputBackground};
+    // background: var(--readonlyInputBackground);
     box-shadow: none;
-    border-radius: ${theme.borderRadius};
-    border: 1px solid ${theme.inputBorderColor};
-    border-color: ${theme.inputBorderColor};
+    // border-radius: var(--borderRadius);
+    // border: 1px solid var(--inputBorderColor);
+    // border-color: var(--inputBorderColor);
     box-sizing: border-box;
     display: block;
-    font-family: ${theme.fontFamily};
+    font: normal normal normal 14px Rubik;
     outline: none;
     resize: none;
     width: 100%;
+    margin-bottom: 10px;
   }
-`);
+`;

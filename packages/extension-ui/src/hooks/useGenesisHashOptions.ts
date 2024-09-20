@@ -1,4 +1,4 @@
-// Copyright 2019-2023 @polkadot/extension-ui authors & contributors
+// Copyright 2019-2024 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
@@ -16,7 +16,7 @@ interface Option {
 
 const RELAY_CHAIN = 'Relay Chain';
 
-export default function (): Option[] {
+export default function useGenesisHashOptions (): Option[] {
   const { t } = useTranslation();
   const [metadataChains, setMetadatachains] = useState<Option[]>([]);
 
@@ -30,7 +30,7 @@ export default function (): Option[] {
 
   const hashes = useMemo(() => [
     {
-      text: t<string>('Allow use on any chain'),
+      text: t('Allow use on any chain'),
       value: '' as HexString
     },
     // put the relay chains at the top

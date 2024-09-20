@@ -1,4 +1,4 @@
-// Copyright 2019-2023 @polkadot/extension-base authors & contributors
+// Copyright 2019-2024 @polkadot/extension-base authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 /* global chrome */
@@ -14,7 +14,7 @@ import type { AuthResponse } from './State.js';
 import type State from './State.js';
 
 import { checkIfDenied } from '@polkadot/phishing';
-import keyring from '@polkadot/ui-keyring';
+import { keyring } from '@polkadot/ui-keyring';
 import { accounts as accountsObservable } from '@polkadot/ui-keyring/observable/accounts';
 import { assert, isNumber } from '@polkadot/util';
 
@@ -188,7 +188,7 @@ export default class Tabs {
   private redirectPhishingLanding (phishingWebsite: string): void {
     const nonFragment = phishingWebsite.split('#')[0];
     const encodedWebsite = encodeURIComponent(nonFragment);
-    const url = `${chrome.extension.getURL('index.html')}#${PHISHING_PAGE_REDIRECT}/${encodedWebsite}`;
+    const url = `${chrome.runtime.getURL('index.html')}#${PHISHING_PAGE_REDIRECT}/${encodedWebsite}`;
 
     chrome.tabs.query({ url: nonFragment }, (tabs) => {
       tabs
