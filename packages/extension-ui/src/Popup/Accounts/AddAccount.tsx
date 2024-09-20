@@ -26,7 +26,7 @@ function AddAccount({ className }: Props): React.ReactElement<Props> {
     <>
       <Header
         showAdd
-        // showSettings
+        showSettings
       // text={t('Add Account')}
       />
       <div className={className}>

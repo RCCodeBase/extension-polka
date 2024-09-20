@@ -2,9 +2,7 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": "./packages",
-    "composite": false,
-    "noPropertyAccessFromIndexSignature": true,
-    "noUncheckedIndexedAccess": true,
+    "composite": false
   },
   "include": [
     "packages/**/src/**/*",

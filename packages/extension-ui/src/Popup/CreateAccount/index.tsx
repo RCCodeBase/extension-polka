@@ -6,8 +6,8 @@ import type { HexString } from '@polkadot/util/types';
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 // import AccountNamePasswordCreation from '../../components/AccountNamePasswordCreation.js';
-import { AccountNamePasswordCreationnext, ActionContext, Addresshowonly, Addressnext, Dropdown, Loading, MnemonicseedVerification } from '../../components/index.js';
-import {  useGenesisHashOptions, useMetadata, useTranslation } from '../../hooks/index.js';
+import { AccountNamePasswordCreationnext, ActionContext, Addresshowonly, Addressnext, Loading, MnemonicseedVerification } from '../../components/index.js';
+import {  useMetadata, useTranslation } from '../../hooks/index.js';
 import { createAccountSuri, createSeed, validateSeed } from '../../messaging.js';
 import { HeaderWithSteps, Name } from '../../partials/index.js';
 import { styled } from '../../styled.js';
@@ -18,7 +18,7 @@ interface Props {
   className?: string;
 }
 
-function CreateAccount({ className }: Props): React.ReactElement {
+function CreateAccount(): React.ReactElement {
   const { t } = useTranslation();
   const onAction = useContext(ActionContext);
   const [isBusy, setIsBusy] = useState(false);
@@ -27,7 +27,7 @@ function CreateAccount({ className }: Props): React.ReactElement {
   const [seed, setSeed] = useState<null | string>(null);
   const [type, setType] = useState(DEFAULT_TYPE);
   const [name, setName] = useState('');
-  const options = useGenesisHashOptions();
+  // const options = useGenesisHashOptions();
   const [genesisHash, setGenesis] = useState<HexString | null>(null);
   const chain = useMetadata(genesisHash, true);
 
@@ -42,7 +42,7 @@ function CreateAccount({ className }: Props): React.ReactElement {
   }, []);
 
   useEffect((): void => {
-    // setGenesis('0x99f72c0a4e8ec69365bb2b480302b719465d838cfefa9db0c5a91eed5378285c');
+    setGenesis('0x99f72c0a4e8ec69365bb2b480302b719465d838cfefa9db0c5a91eed5378285c');
     if (seed) {
       const type = chain && chain.definition.chainType === 'ethereum'
         ? 'ethereum'
@@ -83,10 +83,10 @@ function CreateAccount({ className }: Props): React.ReactElement {
   //   []
   // );
 
-  const _onChangeNetwork = useCallback(
-    (newGenesisHash: HexString) => setGenesis(newGenesisHash),
-    []
-  );
+  // const _onChangeNetwork = useCallback(
+  //   (newGenesisHash: HexString) => setGenesis(newGenesisHash),
+  //   []
+  // );
 
   console.log("here name",name);
 
@@ -139,13 +139,13 @@ function CreateAccount({ className }: Props): React.ReactElement {
                   dontshowname={false}
                   createacc={true}
                 />
-                 <Dropdown
+                {/* <Dropdown
                   className={className}
                   label={t('Network')}
                   onChange={_onChangeNetwork}
                   options={options}
                   value={genesisHash}
-                /> 
+                /> */}
                 <AccountNamePasswordCreationnext
                   buttonLabel={t('Create my account')}
                   isBusy={isBusy}

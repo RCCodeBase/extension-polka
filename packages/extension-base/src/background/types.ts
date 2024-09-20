@@ -96,7 +96,7 @@ export interface RequestSignatures {
   'pri(authorize.list)': [null, ResponseAuthorizeList];
   'pri(authorize.requests)': [RequestAuthorizeSubscribe, boolean, AuthorizeRequest[]];
   'pri(authorize.remove)': [string, ResponseAuthorizeList];
-  'pri(authorize.delete.request)': [string, void];
+  'pri(authorize.reject)': [string, void];
   'pri(authorize.update)': [RequestUpdateAuthorizedAccounts, void];
   'pri(activeTabsUrl.update)': [RequestActiveTabsUrlUpdate, void];
   'pri(connectedTabsUrl.get)': [null, ConnectedTabsUrlResponse];
@@ -299,6 +299,7 @@ export interface RequestSigningApprovePassword {
 export interface RequestSigningApproveSignature {
   id: string;
   signature: HexString;
+  signedTransaction?: HexString;
 }
 
 export interface RequestSigningCancel {
@@ -358,6 +359,7 @@ export type TransportResponseMessage<TMessageType extends MessageTypes> =
 export interface ResponseSigning {
   id: string;
   signature: HexString;
+  signedTransaction?: HexString;
 }
 
 export interface ResponseDeriveValidate {

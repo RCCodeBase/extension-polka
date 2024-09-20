@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
-    "composite": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noUncheckedIndexedAccess": true,
+    "composite": true
   },
   "files": [],
   "references": [

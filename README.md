@@ -8,18 +8,22 @@ As it stands, it does one thing: it _only_ manages accounts and allows the signi
 
 Steps to build the extension and view your changes in a browser:
 
-1. Build via `yarn build` or `yarn watch`
-2. Install the extension
-  - Chrome:
-    - go to `chrome://extensions/`
-    - ensure you have the Development flag set
-    - "Load unpacked" and point to `packages/extension/build`
-    - if developing, after making changes - refresh the extension
-  - Firefox:
-    - go to `about:debugging#addons`
-    - check "Enable add-on debugging"
-    - click on "Load Temporary Add-on" and point to `packages/extension/build/manifest.json`
-    - if developing, after making changes - reload the extension
+1. Chrome:
+    1. Build via `yarn build:chrome`
+      - NOTE: You may need to enable corepack by running `corepack enable`
+    2. Install the extension
+      - go to `chrome://extensions/`
+      - ensure you have the Development flag set
+      - "Load unpacked" and point to `packages/extension/build`
+      - if developing, after making changes - refresh the extension
+2. Firefox
+    1. Build via `yarn build:ff`
+      - NOTE: You may need to enable corepack by running `corepack enable`
+    2. Install the extension
+      - go to `about:debugging#addons`
+      - check "Enable add-on debugging"
+      - click on "Load Temporary Add-on" and point to `packages/extension/build/manifest.json`
+      - if developing, after making changes - reload the extension
 
 Once added, you can create an account (via a generated seed) or import via an existing seed.
 

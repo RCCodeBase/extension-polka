@@ -5,7 +5,7 @@
   "name": "Cord extension",
   "short_name": "polkadot{.js}",
   "manifest_version": 3,
-  "permissions": ["storage", "tabs", "alarms","activeTab"],
+  "permissions": ["storage", "tabs","activeTab"],
   "background": {
     "service_worker": "background.js",
     "type": "module"

@@ -128,7 +128,7 @@ function Header({ children, className = '', onFilter, showAdd, showBackArrow, sh
                   className='connectedAccounts'
                   to={connectedTabsUrl.length === 1 ? `/url/manage/${connectedTabsUrl[0]}` : '/auth-list'}
                 >
-                  <span className='greenDot'>•</span>Connected
+                  <span className='greenDot'>•</span>Connect Accounts
                 </Link>
               </div>
             )}
@@ -172,7 +172,7 @@ function Header({ children, className = '', onFilter, showAdd, showBackArrow, sh
                 size='lg'
               />
             </div>
-          )} 
+          )}
         </div>
         {isAddOpen && (
           <MenuAdd reference={addMenuRef} />
