@@ -1,17 +1,17 @@
 {
-  "author": "polkadot.{js}",
+  "author": "cord.{js}",
   "description": "Manage your Polkadot accounts outside of dapps. Injects the accounts and allows signing transactions for a specific account.",
   "homepage_url": "https://github.com/polkadot-js/extension",
   "name": "Cord extension",
-  "short_name": "polkadot{.js}",
+  "short_name": "cord{.js}",
   "manifest_version": 3,
-  "permissions": ["storage", "tabs","activeTab"],
+  "permissions": ["storage", "tabs"],
   "background": {
     "service_worker": "background.js",
     "type": "module"
   },
   "action": {
-    "default_title": "polkadot{.js}",
+    "default_title": "cord{.js}",
     "default_popup": "index.html"
   },
   "content_scripts": [{
