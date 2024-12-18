@@ -20,7 +20,7 @@ interface QrAccount {
   name?: string;
 }
 
-export default function ImportQr(): React.ReactElement {
+export default function ImportQr (): React.ReactElement {
   const { t } = useTranslation();
   const onAction = useContext(ActionContext);
   const [account, setAccount] = useState<QrAccount | null>(null);

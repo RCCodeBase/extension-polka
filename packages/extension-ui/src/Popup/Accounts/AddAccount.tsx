@@ -3,18 +3,18 @@
 
 import React, { useCallback, useContext } from 'react';
 
+// import AddAccountImage from './AddAccountImage.js';
+import createaccount from '../../assets/createicon.svg';
 import { ActionContext, ButtonSm } from '../../components/index.js';
 import { useTranslation } from '../../hooks/index.js';
 import Header from '../../partials/Header.js';
 import { styled } from '../../styled.js';
-// import AddAccountImage from './AddAccountImage.js';
-import createaccount from '../../assets/createicon.svg';
 
 interface Props {
   className?: string;
 }
 
-function AddAccount({ className }: Props): React.ReactElement<Props> {
+function AddAccount ({ className }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const onAction = useContext(ActionContext);
   const _onClick = useCallback(

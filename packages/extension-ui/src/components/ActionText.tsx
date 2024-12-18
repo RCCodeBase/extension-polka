@@ -16,7 +16,7 @@ interface Props {
   text: string;
 }
 
-function ActionText({ className, icon, onClick, text }: Props): React.ReactElement<Props> {
+function ActionText ({ className, icon, onClick, text }: Props): React.ReactElement<Props> {
   return (
     <div
       className={className}

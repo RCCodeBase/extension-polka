@@ -11,7 +11,7 @@ import { styled } from '../styled.js';
 // import Button from './Button.js';
 import ButtonSubmit from './ButtonSubmit.js';
 
-function NextStepButton({ children, ...props }: ButtonProps): React.ReactElement<ButtonProps> {
+function NextStepButton ({ children, ...props }: ButtonProps): React.ReactElement<ButtonProps> {
   return (
     <ButtonSubmit {...props}>
       {children}

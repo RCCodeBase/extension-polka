@@ -17,7 +17,7 @@ export interface ButtonProps {
   left?: boolean | null | undefined;
 }
 
-function ButtomSubmit({ children, className = '', isBusy, isDisabled, onClick, to }: ButtonProps): React.ReactElement<ButtonProps> {
+function ButtomSubmit ({ children, className = '', isBusy, isDisabled, onClick, to }: ButtonProps): React.ReactElement<ButtonProps> {
   const _onClick = useCallback(
     (): void => {
       if (isBusy || isDisabled) {
@@ -46,7 +46,7 @@ function ButtomSubmit({ children, className = '', isBusy, isDisabled, onClick, t
   );
 }
 
-export default styled(ButtomSubmit)<ButtonProps>(({ isDanger,left }) => `
+export default styled(ButtomSubmit)<ButtonProps>(({ isDanger, left }) => `
   background: var(${isDanger ? '--buttonBackgroundDanger' : '--btnBackgroundSubmit'});
   cursor: pointer;
   display: block;

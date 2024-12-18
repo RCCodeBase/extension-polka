@@ -163,7 +163,7 @@ function Extrinsic ({ className, payload, request: { blockNumber, genesisHash, m
           <td className='data'>
             <details>
               <summary>{typeof humanReadableAssetId === 'string' ? humanReadableAssetId : '{...}'}</summary>
-              <pre>{JSON.stringify(assetId as string, null, 2)}</pre>
+              <pre>{JSON.stringify(assetId, null, 2)}</pre>
             </details>
           </td>
         </tr>

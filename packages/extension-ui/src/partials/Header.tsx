@@ -13,9 +13,9 @@ import Link from '../components/Link.js';
 import { useOutsideClick, useTranslation } from '../hooks/index.js';
 import { getConnectedTabsUrl } from '../messaging.js';
 import { styled } from '../styled.js';
+import Createico from '../util/ico/Createico';
 import MenuAdd from './MenuAdd.js';
 import MenuSettings from './MenuSettings.js';
-import Createico from '../util/ico/Createico';
 
 interface Props {
   children?: React.ReactNode;
@@ -30,7 +30,7 @@ interface Props {
   text?: React.ReactNode;
 }
 
-function Header({ children, className = '', onFilter, showAdd, showBackArrow, showConnectedAccounts, showSearch, showSettings, smallMargin = false, text }: Props): React.ReactElement<Props> {
+function Header ({ children, className = '', onFilter, showAdd, showBackArrow, showConnectedAccounts, showSearch, showSettings, smallMargin = false, text }: Props): React.ReactElement<Props> {
   const [isAddOpen, setShowAdd] = useState(false);
   const [isSettingsOpen, setShowSettings] = useState(false);
   const [isSearchOpen, setShowSearch] = useState(false);
@@ -115,9 +115,9 @@ function Header({ children, className = '', onFilter, showAdd, showBackArrow, sh
               />
             )
           }
-          {text ?
-            (<span className='logoText'>{text}</span>) :
-            (<span className='logoText'> <span className='logoh3head'>CORD</span> Network</span>)}
+          {text
+            ? (<span className='logoText'>{text}</span>)
+            : (<span className='logoText'> <span className='logoh3head'>CORD</span> Network</span>)}
           {/* <span className='logoText'>{text || 'CORD Network'}</span> */}
         </div>
         {showSearch && (

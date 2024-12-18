@@ -2,24 +2,12 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // import { faUsb } from '@fortawesome/free-brands-svg-icons';
-import { faCodeBranch, faFileExport, 
-  // faFileUpload, faKey,
-   faPlusCircle,
-    // faQrcode 
-  } from '@fortawesome/free-solid-svg-icons';
+import { faCodeBranch, faFileExport, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { 
-  // useCallback,
-   useContext } from 'react';
+import React, { useContext } from 'react';
 
-import { AccountContext, Link,
-  //  MediaContext,
-    Menu, 
-    // MenuDivider, 
-    MenuItem } from '../components/index.js';
-import { 
-  // useIsPopup, useLedger,
-   useTranslation } from '../hooks/index.js';
+import { AccountContext, Link, Menu, MenuItem } from '../components/index.js';
+import { useTranslation } from '../hooks/index.js';
 // import { windowOpen } from '../messaging.js';
 import { styled } from '../styled.js';
 

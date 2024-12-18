@@ -210,36 +210,36 @@ function Address ({ actions, address, children, className, genesisHash, isExtern
           value={formatted || address}
         />
         <div className='info'>
-            {parentName
-              ? (
-                <>
-                  <div className='banner'>
-                    <FontAwesomeIcon
-                      className='deriveIcon'
-                      icon={faCodeBranch}
-                    />
-                    <div
-                      className='parentName'
-                      data-field='parent'
+          {parentName
+            ? (
+              <>
+                <div className='banner'>
+                  <FontAwesomeIcon
+                    className='deriveIcon'
+                    icon={faCodeBranch}
+                  />
+                  <div
+                    className='parentName'
+                    data-field='parent'
                     title = {parentNameSuri}
-                    >
-                      {parentNameSuri}
-                    </div>
+                  >
+                    {parentNameSuri}
                   </div>
-                  <div className='name displaced'>
-                    <Name />
-                  </div>
-                </>
-              )
-              : (
-                <div
-                  className='name'
-                  data-field='name'
-                >
+                </div>
+                <div className='name displaced'>
                   <Name />
                 </div>
-              )
-            }
+              </>
+            )
+            : (
+              <div
+                className='name'
+                data-field='name'
+              >
+                <Name />
+              </div>
+            )
+          }
           {chain?.genesisHash && (
             <div
               className='banner chain'

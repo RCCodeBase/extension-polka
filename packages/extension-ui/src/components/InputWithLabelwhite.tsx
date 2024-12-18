@@ -6,9 +6,9 @@ import React, { useCallback, useState } from 'react';
 import { useTranslation } from '../hooks/index.js';
 import { styled } from '../styled.js';
 import Label from './Label.js';
+import { Inputwhite } from './TextInputswhite.js';
 // import { Input } from './TextInputs.js';
 import Warning from './Warning.js';
-import { Inputwhite } from './TextInputswhite.js';
 
 interface Props {
   className?: string;

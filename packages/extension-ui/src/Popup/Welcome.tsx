@@ -3,18 +3,19 @@
 
 import React, { useCallback, useContext, useMemo } from 'react';
 
+import { settings } from '@polkadot/ui-settings';
+
 import { ActionContext, Button, ButtonArea, Dropdownnext, List, VerticalSpace } from '../components/index.js';
 import { useTranslation } from '../hooks/index.js';
 import { Header } from '../partials/index.js';
 import { styled } from '../styled.js';
 import getLanguageOptions from '../util/getLanguageOptions.js';
-import { settings } from '@polkadot/ui-settings';
 
 interface Props {
   className?: string;
 }
 
-function Welcome({ className }: Props): React.ReactElement<Props> {
+function Welcome ({ className }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const onAction = useContext(ActionContext);
   const languageOptions = useMemo(() => getLanguageOptions(), []);
@@ -44,7 +45,6 @@ function Welcome({ className }: Props): React.ReactElement<Props> {
         options={languageOptions}
         value={settings.i18nLang}
       />
-
       <div className={className}>
         <p>{t('Before we start, just a couple of notes regarding use:')}</p>
         <List>

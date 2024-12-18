@@ -7,12 +7,12 @@ import { ButtonArea, Checkbox, MnemonicSeed, NextStepButton, VerticalSpace, Warn
 import { useToast, useTranslation } from '../../hooks/index.js';
 
 interface Props {
-  name:string;
+  name: string;
   onNextStep: () => void;
   seed: string;
 }
 
-function Mnemonic({ name,onNextStep, seed }: Props): React.ReactElement<Props> {
+function Mnemonic ({ name, onNextStep, seed }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const [isMnemonicSaved, setIsMnemonicSaved] = useState(false);
   const { show } = useToast();

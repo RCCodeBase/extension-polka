@@ -30,7 +30,6 @@ function Forget ({ className, match: { params: { address } } }: Props): React.Re
     [onAction]
   );
 
-
   const onPassChange = useCallback(
     (password: string) => {
       setPass(password);
@@ -42,22 +41,23 @@ function Forget ({ className, match: { params: { address } } }: Props): React.Re
     async (): Promise<void> => {
       setIsBusy(true);
       const isUnlockable = await validateAccount(address, pass);
-      if(isUnlockable){
-      forgetAccount(address)
-        .then(() => {
-          setIsBusy(false);
-          onAction('/');
-        })
-        .catch((error: Error) => {
-          setIsBusy(false);
-          console.error(error);
-        });
-      }else{
+
+      if (isUnlockable) {
+        forgetAccount(address)
+          .then(() => {
+            setIsBusy(false);
+            onAction('/');
+          })
+          .catch((error: Error) => {
+            setIsBusy(false);
+            console.error(error);
+          });
+      } else {
         setIsBusy(false);
-        setError("Password wrong");
+        setError('Password wrong');
       }
     },
-    [address, onAction,pass]
+    [address, onAction, pass]
   );
 
   return (
@@ -72,7 +72,7 @@ function Forget ({ className, match: { params: { address } } }: Props): React.Re
             {t('You are about to remove the account. This means that you will not be able to access it via this extension anymore. If you wish to recover it, you would need to use the seed.')}
           </Warningmnemonic>
           <div className='actionArea'>
-          <InputWithLabelwhite
+            <InputWithLabelwhite
               data-export-password
               disabled={isBusy}
               isError={pass.length < MIN_LENGTH || !!error}
@@ -81,7 +81,7 @@ function Forget ({ className, match: { params: { address } } }: Props): React.Re
               placeholder='Password'
               type='password'
             />
-              {error && (
+            {error && (
               <Warningmnemonic
                 isBelowInput
                 isDanger

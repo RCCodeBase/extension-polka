@@ -12,18 +12,18 @@ interface Props {
   value?: string;
 }
 
-function BoxWithLabel ({ className,label, value }: Props): React.ReactElement<Props> {
+function BoxWithLabel ({ className, label, value }: Props): React.ReactElement<Props> {
   return (
     <div className={className}>
-    <p className='labelseed'>{label}</p>
-    {/* <Label
+      <p className='labelseed'>{label}</p>
+      {/* <Label
       className={className}
       label={label}
     > */}
       <div className='seedBox'>
         <span>{value}</span>
       </div>
-    {/* </Label> */}
+      {/* </Label> */}
     </div>
   );
 }

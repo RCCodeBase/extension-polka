@@ -147,14 +147,14 @@ function Account ({ address, className, genesisHash, isExternal, isHardware, isH
       >
         {isEditing && (
           <div className='nameedit'>
-          <Name
-            address={address}
-            className={`editName ${parentName ? 'withParent' : ''}`}
-            isFocused
-            label={' '}
-            onBlur={_saveChanges}
-            onChange={setName}
-          />
+            <Name
+              address={address}
+              className={`editName ${parentName ? 'withParent' : ''}`}
+              isFocused
+              label={' '}
+              onBlur={_saveChanges}
+              onChange={setName}
+            />
           </div>
         )}
       </Addressnext>

@@ -3,8 +3,8 @@
 
 import React from 'react';
 
-import { styled } from '../styled.js';
 import warningico from '../assets/warning.svg';
+import { styled } from '../styled.js';
 
 interface Props {
   children: React.ReactNode;
@@ -13,7 +13,7 @@ interface Props {
   isDanger?: boolean;
 }
 
-function Warningmnemonic({ children, className = '', isBelowInput, isDanger }: Props): React.ReactElement<Props> {
+function Warningmnemonic ({ children, className = '', isBelowInput, isDanger }: Props): React.ReactElement<Props> {
   return (
     <div className={`${className} ${isDanger ? 'danger' : ''} ${isBelowInput ? 'belowInput' : ''}`}>
       <img src={warningico} />

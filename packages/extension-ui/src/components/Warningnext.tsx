@@ -12,7 +12,7 @@ interface Props {
   isDanger?: boolean;
 }
 
-function Warningnext({ children, className = '', isBelowInput, isDanger }: Props): React.ReactElement<Props> {
+function Warningnext ({ children, className = '', isBelowInput, isDanger }: Props): React.ReactElement<Props> {
   return (
     <div className={`${className} ${isDanger ? 'danger' : ''} ${isBelowInput ? 'belowInput' : ''}`}>
       <div className='warning-message'>{children}</div>

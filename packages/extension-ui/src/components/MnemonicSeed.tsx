@@ -1,13 +1,15 @@
 // Copyright 2019-2024 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { MouseEventHandler } from 'react';;
+import type { MouseEventHandler } from 'react';
+
 import React from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
+
 import { useTranslation } from '../hooks/index.js';
 import { styled } from '../styled.js';
-import BoxWithLabel from './BoxWithLabel.js';
 import Copyico from '../util/ico/Copyico';
+import BoxWithLabel from './BoxWithLabel.js';
 
 interface Props {
   seed: string;
@@ -15,18 +17,18 @@ interface Props {
   className?: string;
 }
 
-function MnemonicSeed({ className, onCopy, seed }: Props): React.ReactElement<Props> {
+function MnemonicSeed ({ className, onCopy, seed }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
-
 
   const downloadFile = () => {
     const text = seed; // Replace with your text content
-    const filename = "seed.txt";
+    const filename = 'seed.txt';
 
     const blob = new Blob([text], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
 
     const link = document.createElement('a');
+
     link.href = url;
     link.download = filename;
     document.body.appendChild(link);
@@ -45,16 +47,17 @@ function MnemonicSeed({ className, onCopy, seed }: Props): React.ReactElement<Pr
         <CopyToClipboard text={seed}>
           <div
             className='DownloadFile'
-            onClick={onCopy}
             data-seed-action='copy'
+            onClick={onCopy}
           >
-            <Copyico  />
+            <Copyico />
             <span>{t('Copy')}</span>
           </div>
 
         </CopyToClipboard>
         <div
           className='DownloadFile'
+          // eslint-disable-next-line react/jsx-no-bind
           onClick={downloadFile}
         >
           <span>{t('Download a copy')}</span>

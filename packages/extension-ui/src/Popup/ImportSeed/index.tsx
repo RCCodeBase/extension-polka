@@ -19,7 +19,7 @@ export interface AccountInfo {
   suri: string;
 }
 
-function ImportSeed(): React.ReactElement {
+function ImportSeed (): React.ReactElement {
   const { t } = useTranslation();
   const { accounts } = useContext(AccountContext);
   const onAction = useContext(ActionContext);
@@ -54,6 +54,7 @@ function ImportSeed(): React.ReactElement {
           console.error(error);
         });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account, onAction, type]);
 
   const _onNextStep = useCallback(

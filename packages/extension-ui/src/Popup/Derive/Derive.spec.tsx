@@ -9,8 +9,7 @@ import type { AccountJson, ResponseDeriveValidate } from '@polkadot/extension-ba
 
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import enzyme from 'enzyme';
-import React from 'react';
-import { act } from 'react-dom/test-utils';
+import React, { act } from 'react';
 import { MemoryRouter, Route } from 'react-router';
 
 import { AccountContext, ActionContext } from '../../components/index.js';

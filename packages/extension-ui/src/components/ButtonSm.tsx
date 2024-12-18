@@ -7,42 +7,42 @@ import { styled } from '../styled.js';
 import Spinner from './Spinner.js';
 
 export interface ButtonProps {
-    className?: string;
-    children?: React.ReactNode;
-    isBusy?: boolean;
-    isDanger?: boolean;
-    isDisabled?: boolean;
-    onClick?: () => void | Promise<void | boolean> | null;
-    to?: string;
+  className?: string;
+  children?: React.ReactNode;
+  isBusy?: boolean;
+  isDanger?: boolean;
+  isDisabled?: boolean;
+  onClick?: () => void | Promise<void | boolean> | null;
+  to?: string;
 }
 
-function ButtonSm({ children, className = '', isBusy, isDisabled, onClick, to }: ButtonProps): React.ReactElement<ButtonProps> {
-    const _onClick = useCallback(
-        (): void => {
-            if (isBusy || isDisabled) {
-                return;
-            }
+function ButtonSm ({ children, className = '', isBusy, isDisabled, onClick, to }: ButtonProps): React.ReactElement<ButtonProps> {
+  const _onClick = useCallback(
+    (): void => {
+      if (isBusy || isDisabled) {
+        return;
+      }
 
-            onClick && Promise.resolve(onClick()).catch(console.error);
+      onClick && Promise.resolve(onClick()).catch(console.error);
 
-            if (to) {
-                window.location.hash = to;
-            }
-        },
-        [isBusy, isDisabled, onClick, to]
-    );
+      if (to) {
+        window.location.hash = to;
+      }
+    },
+    [isBusy, isDisabled, onClick, to]
+  );
 
-    return (
-        <button
-            className={`${className}${(isDisabled || isBusy) ? ' isDisabled' : ''}${isBusy ? ' isBusy' : ''}`}
-            disabled={isDisabled || isBusy}
-            onClick={_onClick}
-        >
-            <div className='children'>{children}</div>
-            <div className='disabledOverlay' />
-            <Spinner className='busyOverlay' />
-        </button>
-    );
+  return (
+    <button
+      className={`${className}${(isDisabled || isBusy) ? ' isDisabled' : ''}${isBusy ? ' isBusy' : ''}`}
+      disabled={isDisabled || isBusy}
+      onClick={_onClick}
+    >
+      <div className='children'>{children}</div>
+      <div className='disabledOverlay' />
+      <Spinner className='busyOverlay' />
+    </button>
+  );
 }
 
 export default styled(ButtonSm)<ButtonProps>(({ isDanger }) => `

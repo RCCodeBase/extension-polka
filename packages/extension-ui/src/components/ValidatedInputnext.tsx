@@ -6,9 +6,9 @@ import type { ResultType, Validator } from '../util/validators.js';
 import React, { useEffect, useState } from 'react';
 
 import { useIsMounted } from '../hooks/index.js';
-import { Result } from '../util/validators.js';
 // import Warning from './Warning.js';
 import { styled } from '../styled.js';
+import { Result } from '../util/validators.js';
 import { Warningnext } from './index.js';
 
 interface BasicProps {
@@ -25,7 +25,7 @@ type Props<T extends BasicProps> = T & {
   validator: Validator<string>;
 }
 
-function ValidatedInputnext<T extends Record<string, unknown>>({ className, component: Input, defaultValue, onValidatedChange, validator, ...props }: Props<T>): React.ReactElement<Props<T>> {
+function ValidatedInputnext<T extends Record<string, unknown>> ({ className, component: Input, defaultValue, onValidatedChange, validator, ...props }: Props<T>): React.ReactElement<Props<T>> {
   const [value, setValue] = useState(defaultValue || '');
   const [validationResult, setValidationResult] = useState<ResultType<string>>(Result.ok(''));
   const isMounted = useIsMounted();

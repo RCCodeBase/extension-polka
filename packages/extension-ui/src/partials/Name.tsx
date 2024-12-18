@@ -17,7 +17,7 @@ interface Props {
   value?: string | null;
 }
 
-export default function Name({ address, className, isFocused, label, onBlur, onChange, value }: Props): React.ReactElement<Props> {
+export default function Name ({ address, className, isFocused, label, onBlur, onChange, value }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const { accounts } = useContext(AccountContext);
   const isNameValid = useMemo(() => isNotShorterThan(3, t('Account name is too short')), [t]);
@@ -33,10 +33,10 @@ export default function Name({ address, className, isFocused, label, onBlur, onC
       defaultValue={startValue}
       isFocused={isFocused}
       label={label || t('A descriptive name for your account')}
-      placeholder={label || t('A descriptive name for your account')}
       onBlur={onBlur}
       onEnter={onBlur}
       onValidatedChange={onChange}
+      placeholder={label || t('A descriptive name for your account')}
       type='text'
       validator={isNameValid}
     />

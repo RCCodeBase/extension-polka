@@ -1,19 +1,19 @@
 // Copyright 2019-2024 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-export { default as AccountNamePasswordCreation } from './AccountNamePasswordCreation.js';
 export { default as AccountNamePasswordCreationnext } from './AccountNamePasswordCreatennext.js';
+export { default as AccountNamePasswordCreation } from './AccountNamePasswordCreation.js';
 export { default as ActionBar } from './ActionBar.js';
 export { default as ActionText } from './ActionText.js';
 export { default as Address } from './Address.js';
-export { default as Addressnext } from './Addressnext.js';
 export { default as Addresshowonly } from './Addresshowonly.js';
+export { default as Addressnext } from './Addressnext.js';
 export { default as BackButton } from './BackButton.js';
 export { default as Box } from './Box.js';
 export { default as Button } from './Button.js';
+export { default as ButtonArea } from './ButtonArea.js';
 export { default as ButtonSm } from './ButtonSm.js';
 export { default as ButtonSubmit } from './ButtonSubmit.js';
-export { default as ButtonArea } from './ButtonArea.js';
 export { default as ButtonWithSubtitle } from './ButtonWithSubtitle.js';
 export { default as Checkbox } from './Checkbox.js';
 export * from './contexts.js';
@@ -44,12 +44,12 @@ export { default as Switch } from './Switch.js';
 export { default as Table } from './Table.js';
 export { default as TextAreaWithLabel } from './TextAreaWithLabel.js';
 export { Input, TextArea } from './TextInputs.js';
-export { TextAreawhite, Inputwhite } from './TextInputswhite.js';
+export { Inputwhite, TextAreawhite } from './TextInputswhite.js';
 export * from './themes.js';
 export { default as ValidatedInput } from './ValidatedInput.js';
 export { default as ValidatedInputnext } from './ValidatedInputnext.js';
 export { default as VerticalSpace } from './VerticalSpace.js';
 export { default as View } from './View.js';
 export { default as Warning } from './Warning.js';
-export { default as Warningnext } from './Warningnext.js';
 export { default as Warningmnemonic } from './Warningmnemonic.js';
+export { default as Warningnext } from './Warningnext.js';

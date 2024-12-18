@@ -13,6 +13,7 @@ import { faCodeBranch, faQrcode } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
+
 import { decodeAddress, encodeAddress } from '@polkadot/util-crypto';
 
 import details from '../assets/details.svg';
@@ -21,11 +22,11 @@ import { useMetadata, useOutsideClick, useToast, useTranslation } from '../hooks
 import { styled } from '../styled.js';
 import { DEFAULT_TYPE } from '../util/defaultType.js';
 import getParentNameSuri from '../util/getParentNameSuri.js';
+import Copyico from '../util/ico/Copyico.js';
 import { AccountContext, SettingsContext } from './contexts.js';
 // import Identicon from './Identicon.js';
 import Menu from './Menu.js';
 import Svg from './Svg.js';
-import Copyico from '../util/ico/Copyico.js';
 // import Threedotico from '../util/ico/Threedot';
 
 export interface Props {
@@ -44,7 +45,7 @@ export interface Props {
   toggleActions?: number;
   type?: KeypairType;
   dontshowname?: boolean | null | undefined;
-  createacc?:boolean| null | undefined;
+  createacc?: boolean| null | undefined;
 }
 
 interface Recoded {
@@ -56,7 +57,7 @@ interface Recoded {
 }
 
 // find an account in our list
-function findSubstrateAccount(accounts: AccountJson[], publicKey: Uint8Array): AccountJson | null {
+function findSubstrateAccount (accounts: AccountJson[], publicKey: Uint8Array): AccountJson | null {
   const pkStr = publicKey.toString();
 
   return accounts.find(({ address }): boolean =>
@@ -65,14 +66,14 @@ function findSubstrateAccount(accounts: AccountJson[], publicKey: Uint8Array): A
 }
 
 // find an account in our list
-function findAccountByAddress(accounts: AccountJson[], _address: string): AccountJson | null {
+function findAccountByAddress (accounts: AccountJson[], _address: string): AccountJson | null {
   return accounts.find(({ address }): boolean =>
     address === _address
   ) || null;
 }
 
 // recodes an supplied address using the prefix/genesisHash, include the actual saved account & chain
-function recodeAddress(address: string, accounts: AccountWithChildren[], chain: Chain | null, settings: SettingsStruct): Recoded {
+function recodeAddress (address: string, accounts: AccountWithChildren[], chain: Chain | null, settings: SettingsStruct): Recoded {
   // decode and create a shortcut for the encoded address
   const publicKey = decodeAddress(address);
 
@@ -95,13 +96,14 @@ function recodeAddress(address: string, accounts: AccountWithChildren[], chain: 
 const ACCOUNTS_SCREEN_HEIGHT = 550;
 const defaultRecoded = { account: null, formatted: null, prefix: 42, type: DEFAULT_TYPE };
 
-function Address({ actions, address, children, className, genesisHash, isExternal, isHardware, isHidden, name, parentName, showVisibilityAction = false, suri, toggleActions, type: givenType, dontshowname,createacc }: Props): React.ReactElement<Props> {
+function Address ({ actions, address, children, className, createacc, dontshowname, genesisHash, isExternal, isHardware, isHidden, name, parentName, showVisibilityAction = false, suri, toggleActions, type: givenType }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const { accounts } = useContext(AccountContext);
   const settings = useContext(SettingsContext);
-  const [{ account, formatted, genesisHash: recodedGenesis,
+  const [{ account, formatted, genesisHash: recodedGenesis
     // prefix,
     //  type
+  // eslint-disable-next-line object-curly-newline
   }, setRecoded] = useState<Recoded>(defaultRecoded);
   const chain = useMetadata(genesisHash || recodedGenesis, true);
 
@@ -136,11 +138,14 @@ function Address({ actions, address, children, className, genesisHash, isExterna
       setIsMovedMenu(false);
     } else if (actMenuRef.current) {
       const { bottom } = actMenuRef.current.getBoundingClientRect();
-      console.log("here",isHidden);
+
+      console.log('here', isHidden);
+
       if (bottom > ACCOUNTS_SCREEN_HEIGHT) {
         setIsMovedMenu(true);
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showActionsMenu]);
 
   useEffect((): void => {
@@ -169,7 +174,6 @@ function Address({ actions, address, children, className, genesisHash, isExterna
   //   },
   //   [address, isHidden]
   // );
-
 
   const Name = () => {
     const accountName = name || account?.name;
@@ -214,71 +218,72 @@ function Address({ actions, address, children, className, genesisHash, isExterna
         /> */}
 
         <div className='info'>
-          <div className="namespace">
-          {!dontshowname ? (<>
-            {parentName
-              ? (
-                <>
-                  <div className='banner'>
-                    <FontAwesomeIcon
-                      className='deriveIcon'
-                      icon={faCodeBranch}
-                    />
+          <div className='namespace'>
+            {!dontshowname
+              ? (<>
+                {parentName
+                  ? (
+                    <>
+                      <div className='banner'>
+                        <FontAwesomeIcon
+                          className='deriveIcon'
+                          icon={faCodeBranch}
+                        />
+                        <div
+                          className='parentName'
+                          data-field='parent'
+                          title={parentNameSuri}
+                        >
+                          {parentNameSuri}
+                        </div>
+                      </div>
+                      <div className='name displaced'>
+                        <Name />
+                      </div>
+                    </>
+                  )
+                  : (
                     <div
-                      className='parentName'
-                      data-field='parent'
-                      title={parentNameSuri}
+                      className='name'
+                      data-field='name'
                     >
-                      {parentNameSuri}
+                      <Name />
                     </div>
-                  </div>
-                  <div className='name displaced'>
-                    <Name />
-                  </div>
-                </>
+                  )
+                }
+              </>
               )
-              : (
-                <div
-                  className='name'
-                  data-field='name'
-                >
-                  <Name />
-                </div>
-              )
-            }
-          </>
-          ) : (<></>)}
-           {!createacc &&(
-            <>
-            {actions && (
+              : (<></>)}
+            {!createacc && (
               <>
-                 <div
-                 className='settings'
-                 onClick={_onClick}
-                 ref={actIconRef}
-               >
-                  {/* <Threedotico /> */}
-                   <Svg
-                   className={`detailsIcon ${showActionsMenu ? 'active' : ''}`}
-                   src={details}
-                 />  
-               </div>
+                {actions && (
+                  <>
+                    <div
+                      className='settings'
+                      onClick={_onClick}
+                      ref={actIconRef}
+                    >
+                      {/* <Threedotico /> */}
+                      <Svg
+                        className={`detailsIcon ${showActionsMenu ? 'active' : ''}`}
+                        src={details}
+                      />
+                    </div>
+                    {showActionsMenu && (
+                      <Menu
+                        className={`movableMenu ${moveMenuUp ? 'isMoved' : ''}`}
+                        reference={actMenuRef}
+                      >
+                        {actions}
+                      </Menu>
+                    )}
+                  </>
+                )}
+              </>
+            )}
 
-               {showActionsMenu && (
-                 <Menu
-                   className={`movableMenu ${moveMenuUp ? 'isMoved' : ''}`}
-                   reference={actMenuRef}
-                 >
-                   {actions}
-                 </Menu>
-               )}
-               </>
-              )}
-             </>
-           )}
-      
-            </div>
-        <div className="horizontal_line"></div>
+          </div>
+          <div className='horizontal_line'></div>
           {/* {chain?.genesisHash && (
             <div
               className='banner chain'
@@ -299,7 +304,7 @@ function Address({ actions, address, children, className, genesisHash, isExterna
             >
               {formatted || address || t('<unknown>')}
             </div>
-            <CopyToClipboard text={(formatted && formatted) || ''} >
+            <CopyToClipboard text={(formatted && formatted) || ''}>
               <span onClick={_onCopy}><Copyico /></span>
             </CopyToClipboard>
             {(actions || showVisibilityAction) && (
@@ -315,8 +320,8 @@ function Address({ actions, address, children, className, genesisHash, isExterna
           </div>
         </div>
         {!createacc && (
-        <>
-        {/* {actions &&   (
+          <>
+            {/* {actions &&   (
           <>
             <div
               className='settings'
@@ -338,7 +343,7 @@ function Address({ actions, address, children, className, genesisHash, isExterna
             )}
           </>
         )} */}
-        </>)}
+          </>)}
       </div>
       {children}
     </div>

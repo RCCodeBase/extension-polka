@@ -146,8 +146,8 @@ export default function SelectParent ({ className, isLocked, onDerivationConfirm
             isFocused
             label={t('enter the password for the account you want to derive from')}
             onChange={_onParentPasswordEnter}
-            type='password'
             placeholder='password'
+            type='password'
             value={parentPassword}
           />
           {!!parentPassword && !isProperParentPassword && (

@@ -8,8 +8,8 @@ import type * as _ from '@polkadot/dev-test/globals.d.ts';
 
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import enzyme from 'enzyme';
-import React from 'react';
-import { act } from 'react-dom/test-utils';
+import React, { act } from 'react';
+// import  from 'react-dom/test-utils';
 import { MemoryRouter } from 'react-router';
 
 import { ActionContext, Button, Warning } from '../../components/index.js';

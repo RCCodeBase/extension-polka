@@ -26,7 +26,7 @@ interface Props {
   value?: number | string | null;
 }
 
-function Dropdownnext({ className, defaultValue, isDisabled, isFocussed, label, onBlur, onChange, options, value }: Props): React.ReactElement<Props> {
+function Dropdownnext ({ className, defaultValue, isDisabled, isFocussed, label, onBlur, onChange, options, value }: Props): React.ReactElement<Props> {
   const _onChange = useCallback(
     ({ target: { value } }: React.ChangeEvent<HTMLSelectElement>) =>
       onChange && onChange(value.trim()),

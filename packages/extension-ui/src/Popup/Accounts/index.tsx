@@ -6,24 +6,21 @@ import type { AccountWithChildren } from '@polkadot/extension-base/background/ty
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
 import getNetworkMap from '@polkadot/extension-ui/util/getNetworkMap';
+import { settings } from '@polkadot/ui-settings';
 
-import {
-  AccountContext, Dropdownnext,
-  ThemeSwitchContext 
-} from '../../components/index.js';
+import { AccountContext, Dropdownnext, ThemeSwitchContext } from '../../components/index.js';
 import { useTranslation } from '../../hooks/index.js';
 import { Header } from '../../partials/index.js';
 import { styled } from '../../styled.js';
+import getLanguageOptions from '../../util/getLanguageOptions.js';
 import AccountsTree from './AccountsTree.js';
 import AddAccount from './AddAccount.js';
-import getLanguageOptions from '../../util/getLanguageOptions.js';
-import { settings } from '@polkadot/ui-settings';
 
 interface Props {
   className?: string;
 }
 
-function Accounts({ className }: Props): React.ReactElement {
+function Accounts ({ className }: Props): React.ReactElement {
   const { t } = useTranslation();
   const [filter, setFilter] = useState('');
   const [filteredAccount, setFilteredAccount] = useState<AccountWithChildren[]>([]);
@@ -38,10 +35,12 @@ function Accounts({ className }: Props): React.ReactElement {
     setIsChecked(event.target.checked);
   };
 
-  useEffect(()=>{
-      const theme = isChecked ? 'dark' : 'light';
-      setThemeContext(theme);
-  },[isChecked])
+  useEffect(() => {
+    const theme = isChecked ? 'dark' : 'light';
+
+    setThemeContext(theme);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isChecked]);
 
   useEffect(() => {
     setFilteredAccount(
@@ -87,13 +86,16 @@ function Accounts({ className }: Props): React.ReactElement {
                 />
               ))}
             </div>
-            <div className="footer">
-              <div className="themdiv"><p>Light </p>
-                <label className="switch">
-                  <input type="checkbox"
+            <div className='footer'>
+              <div className='themdiv'><p>Light </p>
+                <label className='switch'>
+                  <input
                     checked={isChecked}
-                    onChange={handleCheckboxChange} />
-                  <span className="slider round"></span>
+                    // eslint-disable-next-line react/jsx-no-bind
+                    onChange={handleCheckboxChange}
+                    type='checkbox'
+                  />
+                  <span className='slider round'></span>
                 </label><p> Dark</p>
               </div>
               <div>Manage website access</div>

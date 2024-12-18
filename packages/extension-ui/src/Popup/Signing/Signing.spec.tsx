@@ -10,8 +10,7 @@ import type { SigningRequest } from '@polkadot/extension-base/background/types';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import enzyme from 'enzyme';
 import { EventEmitter } from 'events';
-import React, { useState } from 'react';
-import { act } from 'react-dom/test-utils';
+import React, { act, useState } from 'react';
 
 import { ActionContext, Address, Button, Input, SigningReqContext } from '../../components/index.js';
 import * as messaging from '../../messaging.js';

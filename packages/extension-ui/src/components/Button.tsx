@@ -16,7 +16,7 @@ export interface ButtonProps {
   to?: string;
 }
 
-function Button({ children, className = '', isBusy, isDisabled, onClick, to }: ButtonProps): React.ReactElement<ButtonProps> {
+function Button ({ children, className = '', isBusy, isDisabled, onClick, to }: ButtonProps): React.ReactElement<ButtonProps> {
   const _onClick = useCallback(
     (): void => {
       if (isBusy || isDisabled) {

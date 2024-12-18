@@ -27,7 +27,7 @@ interface ConfirmState {
   parentPassword: string;
 }
 
-function Derive({ isLocked }: Props): React.ReactElement<Props> {
+function Derive ({ isLocked }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const onAction = useContext(ActionContext);
   const { accounts } = useContext(AccountContext);
@@ -54,6 +54,7 @@ function Derive({ isLocked }: Props): React.ReactElement<Props> {
         setIsBusy(false);
         console.error(error);
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account, onAction, parentAddress, parentGenesis, parentPassword]);
 
   const _onDerivationConfirmed = useCallback(({ account, parentPassword }: ConfirmState) => {

@@ -7,7 +7,7 @@ import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 // import AccountNamePasswordCreation from '../../components/AccountNamePasswordCreation.js';
 import { AccountNamePasswordCreationnext, ActionContext, Addresshowonly, Addressnext, Loading, MnemonicseedVerification } from '../../components/index.js';
-import {  useMetadata, useTranslation } from '../../hooks/index.js';
+import { useMetadata, useTranslation } from '../../hooks/index.js';
 import { createAccountSuri, createSeed, validateSeed } from '../../messaging.js';
 import { HeaderWithSteps, Name } from '../../partials/index.js';
 import { styled } from '../../styled.js';
@@ -18,7 +18,7 @@ interface Props {
   className?: string;
 }
 
-function CreateAccount(): React.ReactElement {
+function CreateAccount (): React.ReactElement {
   const { t } = useTranslation();
   const onAction = useContext(ActionContext);
   const [isBusy, setIsBusy] = useState(false);
@@ -43,6 +43,7 @@ function CreateAccount(): React.ReactElement {
 
   useEffect((): void => {
     setGenesis('0x99f72c0a4e8ec69365bb2b480302b719465d838cfefa9db0c5a91eed5378285c');
+
     if (seed) {
       const type = chain && chain.definition.chainType === 'ethereum'
         ? 'ethereum'
@@ -60,7 +61,7 @@ function CreateAccount(): React.ReactElement {
       // this should always be the case
       if (name && password && seed) {
         setIsBusy(true);
-        console.log("here",name,password,seed,type,genesisHash);
+        console.log('here', name, password, seed, type, genesisHash);
         createAccountSuri(name, password, seed, type, genesisHash)
           .then(() => onAction('/'))
           .catch((error: Error): void => {
@@ -87,7 +88,7 @@ function CreateAccount(): React.ReactElement {
   //   []
   // );
 
-  console.log("here name",name);
+  console.log('here name', name);
 
   const _onNameChange = useCallback(
     (name: string | null) => {
@@ -114,12 +115,11 @@ function CreateAccount(): React.ReactElement {
                   />
                   <Addresshowonly
                     address={address}
+                    dontshowname={true}
                     genesisHash={genesisHash}
                     name={name}
-                    dontshowname={true}
                   />
                 </div>
-
                 <Mnemonic
                   name={name}
                   onNextStep={_onNextStep}
@@ -127,16 +127,20 @@ function CreateAccount(): React.ReactElement {
                 />
               </>
             )
+            // eslint-disable-next-line multiline-ternary
             : step === 2 ? (
-              <MnemonicseedVerification    onNextStep={_onNextStep} seed={seed}/>
+              <MnemonicseedVerification
+                onNextStep={_onNextStep}
+                seed={seed}
+              />
             ) : (
-              <div >
+              <div>
                 <Addressnext
                   address={address}
+                  createacc={true}
+                  dontshowname={false}
                   genesisHash={genesisHash}
                   name={name}
-                  dontshowname={false}
-                  createacc={true}
                 />
                 {/* <Dropdown
                   className={className}

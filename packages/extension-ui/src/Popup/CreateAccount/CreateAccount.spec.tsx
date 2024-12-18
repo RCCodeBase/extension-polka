@@ -8,9 +8,9 @@ import type * as _ from '@polkadot/dev-test/globals.d.ts';
 
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import enzyme from 'enzyme';
-import React from 'react';
-import { act } from 'react-dom/test-utils';
+import React, { act } from 'react';
 
+// import { act } from 'react';
 import { ActionContext, ActionText, Button } from '../../components/index.js';
 import * as messaging from '../../messaging.js';
 import { Header } from '../../partials/index.js';
@@ -63,6 +63,7 @@ describe('Create Account', () => {
     jest.spyOn(messaging, 'createSeed').mockImplementation(() => Promise.resolve(exampleAccount));
     jest.spyOn(messaging, 'createAccountSuri').mockImplementation(() => Promise.resolve(true));
     wrapper = mountComponent();
+    // eslint-disable-next-line deprecation/deprecation
     await act(flushAllPromises);
     wrapper.update();
   });
