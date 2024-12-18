@@ -37,10 +37,10 @@ function Header({ children, className = '', onFilter, showAdd, showBackArrow, sh
   const [filter, setFilter] = useState('');
   const [connectedTabsUrl, setConnectedTabsUrl] = useState<string[]>([]);
   const { t } = useTranslation();
-  const addIconRef = useRef(null);
-  const addMenuRef = useRef(null);
+  const addIconRef = useRef<HTMLDivElement | null>(null);
+  const addMenuRef = useRef<HTMLDivElement | null>(null);
   const setIconRef = useRef(null);
-  const setMenuRef = useRef(null);
+  const setMenuRef = useRef<HTMLDivElement | null>(null);
   const isConnected = useMemo(() => connectedTabsUrl.length >= 1
     , [connectedTabsUrl]);
   const onAction = useContext(ActionContext);
@@ -205,7 +205,6 @@ export default React.memo(styled(Header) <Props>`
     width: 100%;
     border-bottom: 1px solid var(--inputBorderColor);
     min-height: 70px;
-
 
     .branding {
       display: flex;

@@ -58,7 +58,6 @@ function CreateAccount(): React.ReactElement {
   const _onCreate = useCallback(
     (name: string, password: string): void => {
       // this should always be the case
-      console.log("here",name);
       if (name && password && seed) {
         setIsBusy(true);
         console.log("here",name,password,seed,type,genesisHash);

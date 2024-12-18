@@ -127,7 +127,7 @@ function Extrinsic ({ className, payload, request: { blockNumber, genesisHash, m
   );
 
   const humanReadablePayload = payload.toHuman() as Record<string, unknown>;
-  const assetId = humanReadablePayload['assetId'];
+  const assetId = humanReadablePayload['assetId'] as string | undefined;
   const humanReadableAssetId = getHumanReadableAssetId(assetId);
 
   return (
@@ -157,13 +157,13 @@ function Extrinsic ({ className, payload, request: { blockNumber, genesisHash, m
           <td className='data'>{formatNumber(payload.tip)}</td>
         </tr>
       )}
-      {assetId && (
+      {assetId && typeof assetId === 'string' && (
         <tr>
           <td className='label'>{t('assetId')}</td>
           <td className='data'>
             <details>
-              <summary>{humanReadableAssetId || '{...}'}</summary>
-              <pre>{JSON.stringify(assetId, null, 2)}</pre>
+              <summary>{typeof humanReadableAssetId === 'string' ? humanReadableAssetId : '{...}'}</summary>
+              <pre>{JSON.stringify(assetId as string, null, 2)}</pre>
             </details>
           </td>
         </tr>

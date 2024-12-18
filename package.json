@@ -6,7 +6,7 @@
   },
   "homepage": "https://github.com/polkadot-js/extension#readme",
   "license": "Apache-2.0",
-  "packageManager": "yarn@4.4.0",
+  "packageManager": "yarn@4.5.3",
   "private": true,
   "repository": {
     "type": "git",
@@ -14,10 +14,10 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "0.52.4-0-x",
+  "version": "0.57.1",
   "versions": {
-    "git": "0.52.4-0-x",
-    "npm": "0.52.3"
+    "git": "0.57.1",
+    "npm": "0.57.1"
   },
   "workspaces": [
     "packages/*"
@@ -45,20 +45,20 @@
     "test:one": "EXTENSION_PREFIX='test' polkadot-dev-run-test --env browser"
   },
   "devDependencies": {
-    "@polkadot/dev": "^0.79.3",
+    "@polkadot/dev": "^0.82.1",
     "@types/node": "^20.10.5",
     "i18next-scanner": "^4.4.0",
     "sinon-chrome": "^3.0.1"
   },
   "resolutions": {
-    "@polkadot/api": "^12.4.1",
-    "@polkadot/keyring": "^13.0.2",
-    "@polkadot/networks": "^13.0.2",
-    "@polkadot/types": "^12.4.1",
-    "@polkadot/util": "^13.0.2",
-    "@polkadot/util-crypto": "^13.0.2",
-    "@polkadot/x-fetch": "^13.0.2",
+    "@polkadot/api": "^15.0.1",
+    "@polkadot/keyring": "^13.2.3",
+    "@polkadot/networks": "^13.2.3",
+    "@polkadot/types": "^15.0.1",
+    "@polkadot/util": "^13.2.3",
+    "@polkadot/util-crypto": "^13.2.3",
+    "@polkadot/x-fetch": "^13.2.3",
     "safe-buffer": "^5.2.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.5.4"
   }
 }

@@ -105,7 +105,11 @@ function Address ({ actions, address, children, className, genesisHash, isExtern
   const actMenuRef = useRef<HTMLDivElement>(null);
   const { show } = useToast();
 
-  useOutsideClick([actIconRef, actMenuRef], () => (showActionsMenu && setShowActionsMenu(!showActionsMenu)));
+  useOutsideClick([actIconRef, actMenuRef], () => {
+    if (showActionsMenu) {
+      setShowActionsMenu(!showActionsMenu);
+    }
+  });
 
   useEffect((): void => {
     if (!address) {

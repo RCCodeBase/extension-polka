@@ -19,7 +19,7 @@ interface Option {
 
 interface Props {
   className?: string;
-  reference: React.MutableRefObject<null>;
+  reference: React.RefObject<HTMLDivElement | null>;
 }
 
 const notificationOptions = ['Extension', 'PopUp', 'Window']

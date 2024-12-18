@@ -1,5 +1,336 @@
 # CHANGELOG
 
+## 0.57.1 Dev 4, 2024
+
+Breaking Changes:
+
+- Upgrade polkadot-js/api to 15.0.1 ([#1483](https://github.com/polkadot-js/extension/pull/1483))
+    - This contains breaking changes where the api now allows the signer to alter the call data. Please reference [PR #6030](https://github.com/polkadot-js/api/pull/6030) for more information.
+- Upgrade polkadot-js/phishing to 0.24.4 ([#1483](https://github.com/polkadot-js/extension/pull/1483))
+
+Contributed:
+
+- fix: extension does not get injected on page load ([#1486](https://github.com/polkadot-js/extension/pull/1486))
+
+Changes:
+
+- Upgrade @polkadot-api/merkleize-metadata to 1.1.10 ([#1484](https://github.com/polkadot-js/extension/pull/1484))
+- Bump yarn to 4.5.3 ([#1485](https://github.com/polkadot-js/extension/pull/1485))
+
+
+## 0.56.2 Nov 12, 2024
+
+Changes:
+
+- Bump dev to 0.82.1 w/ tslib ([#1476](https://github.com/polkadot-js/extension/pull/1476))
+- Bump polkadot-js deps ([#1477](https://github.com/polkadot-js/extension/pull/1477))
+    - polkadot/api -> 14.3.1
+    - polkadot/common -> 13.2.3
+    - polkadot/phishing -> 0.24.3
+    - polkadot/ui -> 3.11.3
+- Bump typescript to 5.5.4 ([#1478](https://github.com/polkadot-js/extension/pull/1478))
+
+
+## 0.56.1 Oct 30, 2024
+
+Changes:
+
+- Bump all polkadot deps ([#1473](https://github.com/polkadot-js/extension/pull/1473))
+    - polkadot/api -> 14.2.1
+    - polkadot/common -> 13.2.2
+        - Gives support for Frequency, and Polimec
+    - polkadot/ui -> 3.11.2
+    - polkadot/phishing -> 0.24.2
+
+
+## 0.55.1 Oct 24, 2024
+
+Changes:
+
+- Bump dev to 0.81.2 ([#1469](https://github.com/polkadot-js/extension/pull/1469))
+    - Export CJS and ESM correctly
+- Bump all polkadot deps ([#1470](https://github.com/polkadot-js/extension/pull/1470))
+    - polkadot/api -> 14.1.1
+    - polkadot/common -> 13.2.1
+    - polkadot/ui -> 3.11.1
+    - polkadot/phishing -> 0.24.1
+- Bump yarn to 4.5.1 ([#1471](https://github.com/polkadot-js/extension/pull/1471))
+
+
+## 0.54.1 Oct 14, 2024
+
+Changes:
+
+- Update polkadot-js deps ([#1466](https://github.com/polkadot-js/extension/pull/1466))
+    - Polkadot-js api -> 14.0.1
+        - NOTE: This adds support for Extrinsic V5.
+    - Polkadot-js phishing -> 0.23.7
+- Bump yarn to 4.5.0 ([#1467](https://github.com/polkadot-js/extension/pull/1467))
+
+
+## 0.53.1 Sep 24, 2024
+
+Contributed:
+
+- Ability to Reject an authentication request instead of ignoring it ([#1453](https://github.com/polkadot-js/extension/pull/1453)) (Thanks to https://github.com/Tbaut)
+
+Changes:
+
+- Upgrade polkadot-js deps ([#1462](https://github.com/polkadot-js/extension/pull/1462))
+    - This contains breaking changes in the API that was released in [13.0.1](https://github.com/polkadot-js/api/releases/tag/v13.0.1). The release changed the way AssetId is returned from `toPayload` in the Signer interface. `Option<TAssetConversion>` is now returned as a SCALE encoded hex.
+
+
+## 0.52.3 Aug 19, 2024
+
+Changes:
+
+- Upgrade polkadot-js/api to 12.4.1
+- Upgrade polkadot-js/phishing to 0.23.4
+
+
+## 0.52.2 Aug 16, 2024
+
+NOTE: This is strictly a patch release for the store.
+
+Changes:
+
+- Remove Alarm permissions ([#1449](https://github.com/polkadot-js/extension/pull/1449))
+
+
+## 0.52.1 Aug 14, 2024
+
+Contributed:
+
+- Send ping before subscriptions (Thanks to https://github.com/F-OBrien) ([#1441](https://github.com/polkadot-js/extension/pull/1441))
+- Fix SignArea and ToastProvider timeout (Thanks to https://github.com/F-OBrien) ([#1444](https://github.com/polkadot-js/extension/pull/1444))
+
+Changes:
+
+- Bump yarn to 4.4.0 ([#1442](https://github.com/polkadot-js/extension/pull/1442))
+- Enable "Chain Specific App" setting ([#1445](https://github.com/polkadot-js/extension/pull/1445))
+    - This allows for ledger apps that are not included in the Polkadot Generic App to work with their specific Ledger App
+- Fix setting rawMetadata as registry metadata ([#1446](https://github.com/polkadot-js/extension/pull/1446))
+
+
+## 0.51.1 Aug 7, 2024
+
+Contributed:
+
+- Update XCM Analyser to v1.3.1 (Thanks to https://github.com/dudo50) ([#1419](https://github.com/polkadot-js/extension/pull/1419))
+- Fix: ensure the service worker is awake before every port message (Thanks to https://github.com/F-OBrien) ([#1433](https://github.com/polkadot-js/extension/pull/1433))
+    - NOTE: The extension-base now exposes a set of functions for port connection stability.
+    - `setupPort`
+    - `wakeUpServiceWorker`
+    - `ensurePortConnection`
+
+Changes:
+
+- Bump yarn to 4.3.1 ([#1426](https://github.com/polkadot-js/extension/pull/1426))
+- Add CI script to check for diffs in src vs build for store release ([#1429](https://github.com/polkadot-js/extension/pull/1429)) ([#1436](https://github.com/polkadot-js/extension/pull/1436))
+- Change Connected to Connect Accounts ([#1430](https://github.com/polkadot-js/extension/pull/1430))
+- Upgrade Polkadot-js deps ([#1434](https://github.com/polkadot-js/extension/pull/1434)) ([#1435](https://github.com/polkadot-js/extension/pull/1435))
+    - polkadot/api 12.3.1
+    - polkadot/phishing 0.23.3
+    - polkadot/ui 3.8.3
+
+
+## 0.50.1 July 30, 2024
+
+Contributed:
+
+- Update subscribed accounts when connected site authorizations are modified (Thanks to https://github.com/F-OBrien)
+    - Deprecates `public udateCurrentTabsUrl` in `class State` in favor of `public updateCurrentTabsUrl`.
+
+Changes:
+
+- Add support for the Ledger Generic App (Thanks to https://github.com/bee344)
+- Add support for the Ledger Migration App (Thanks to https://github.com/bee344)
+    - Note: In order to use the ledger migration app, you must toggle the setting inside of settings. That will enable the migration app for use.
+- Fix extension stuck in ... loading ... screen after service_worker got terminated (Thanks to https://github.com/bee344)
+
+
+## 0.49.3 July 19, 2024
+
+Changes:
+
+- Fix ID used in manifest_firefox.json by adding brackets
+    - The previous patch required brackets arount the ID...
+    
+
+## 0.49.2 July 18, 2024
+
+Changes:
+
+- Fix ID used in manifest_firefox.json
+    - This is internal, and is only necessary for publishing to the store
+
+
+## 0.49.1 July 15, 2024
+
+Breaking Changes:
+
+- Update from Manifest v2 to v3 for Chrome
+- Update from Manifest v2 to v3 for Firefox
+
+Note: These are very large breaking changes. Please review the following PR's to see exactly what has changed and for any additional information that can assist you in your migration.
+
+([#1367](https://github.com/polkadot-js/extension/pull/1367))
+([#1388](https://github.com/polkadot-js/extension/pull/1388))
+([#1399](https://github.com/polkadot-js/extension/pull/1399))
+
+Changes:
+
+- Update xcm analyzer to 1.3.0
+- Upgrade Polkadot.js Deps
+    - @polkadot/common -> 13.0.2 (Introduces the interface for the new ledger app. This will be implemented in the next release)
+    - @polkadot/api -> 12.2.1
+    - @polkadot/phishing -> 0.23.1
+    - @polkadot/ui -> 3.7.1
+- Update module resolution to bundler
+- Clean the manifest build process
+
+
+## 0.48.2 July 3, 2024
+
+Contributed:
+
+- Fix: forget account for legacy account without authorizedAccounts (Thanks to https://github.com/Tbaut)
+
+Changes:
+
+- Adjust ui imports for deterministic bundling
+
+
+## 0.48.1 June 27, 2024
+
+- **Important** Not published to the stores, aligns with latest released packages.
+
+Changes:
+
+- Bump @polkadot/api to 12.0.2
+    - NOTE: We are doing a minor bump because the api in this version now gives the option
+    to modify payloads for `signAndSend`, `signAsync`, and `dryRun` which the extension does not use. That being said, for any user that digests that package it will be available to use as a feature.
+- Bump @polkadot/phishing to 0.22.10
+
+
+## 0.47.6 June 18, 2024
+
+Changes:
+
+- Bump @polkadot/api to 11.3.1
+- Bump @polkadot/phishing to 0.22.9
+- Update build process to enable review by Firefox store
+    - Adds `corepack enable` to CI process
+    - Removes hardcoded path to `.yarn/release` in .yarnrc.yml
+    - Updates zip script to ensure correct compression
+
+
+## 0.47.5 May 22, 2024
+
+- **Important** Published only to Chrome store.
+
+Changes:
+
+- Bump @polkadot/api to 11.1.1
+- Bump @polkadot/phishing to 0.22.8
+- Bump @polkadot/dev to 0.79.3
+
+
+## 0.47.4 May 8, 2024
+
+- **Important** Not published to the stores, aligns with latest released packages.
+
+Changes:
+
+- Bump polkadot/api to 11.0.3 and @polkadot/phishing to 0.22.7
+
+
+## 0.47.3 Apr 27, 2024
+
+- **Important** Not published to the stores, aligns with latest released packages.
+
+Changes:
+
+- Bump polkadot/api to 11.0.2
+
+
+## 0.47.2 Apr 23, 2024
+
+- **Important** Not published to the stores, aligns with latest released packages.
+
+Contributed:
+
+- chore: upgrade web3 dep (Thanks to https://github.com/gdethier)
+
+Changes:
+
+- Update polkadot/api and polkadot/phishing
+
+
+## 0.47.1 Apr 18, 2024
+
+- **Important** Not published to the stores, aligns with latest released packages.
+
+Contributed:
+
+- feat(extrinsic-ui): extrinsic asset id (Thanks to https://github.com/ryanleecode)
+- feat: display asset id in xcm format (Thanks to https://github.com/ryanleecode)
+
+Changes:
+
+- Update nvmrc version
+- Bump yarn to 4.1.1
+- Update the README with library notice
+- Fix typos
+- Update CI checkout and setup_node to v4
+- Update polkadot/* deps
+
+
+## 0.46.9 Mar 20, 2024
+
+- **Important** Not published to the stores, aligns with latest released packages.
+
+Contributed:
+
+- Fix: Prevent authorization request from incorrect origin due to chrome pre-rendering fixes (Thanks to https://github.com/F-OBrien)
+
+Changes:
+
+- Upgrade to `@polkadot/api` 10.12.4
+- Upgrade to `@polkadot/phishing` 0.22.4
+
+
+## 0.46.8 Mar 13, 2024
+
+- **Important** Not published to the stores, aligns with latest released packages.
+
+Changes:
+
+- Upgrade to `@polkadot/api` 10.12.2
+- Upgrade to `@polkadot/phishing` 0.22.3
+
+
+## 0.46.7 Feb 28, 2024
+
+- **Important** Not published to the stores, aligns with latest released packages.
+
+Changes:
+
+- Upgrade to `@polkadot/api` 10.11.2
+- Upgrade to `@polkadot/ui` 3.6.5
+- Upgrade to `@polkadot/phishing` 0.22.2
+
+
+## 0.46.6 Nov 18, 2023
+
+- **Important** Not published to the stores, aligns with latest released packages.
+
+Changes:
+
+- Upgrade to `@polkadot/util` 12.6.1
+- Upgrade to `@polkadot/api` 10.11.1
+
+
 ## 0.46.5 Jun 12, 2023
 
 - **Important** Not published to the stores, aligns with latest released packages.
@@ -8,7 +339,7 @@ Changes:
 
 - Adjust object index access for stricter tsconfig settings
 - Upgrade to `@polkadot/api` 10.9.1
-- Bump to `@polkadot/util` 12.3.2
+- Upgrade to `@polkadot/util` 12.3.2
 
 
 ## 0.46.4 Jun 5, 2023
@@ -18,7 +349,7 @@ Changes:
 Changes:
 
 - Upgrade to `@polkadot/api` 10.8.1
-- Bump to `@polkadot/util` 12.2.2
+- Upgrade to `@polkadot/util` 12.2.2
 
 
 ## 0.46.3 May 13, 2023
@@ -29,7 +360,7 @@ Changes:
 
 - Add `module` to `package.json` export map (ESM-only)
 - Upgrade to `@polkadot/api` 10.6.1
-- Bump to `@polkadot/util` 12.1.1
+- Upgrade to `@polkadot/util` 12.1.1
 
 
 ## 0.46.2 Apr 30, 2023
@@ -40,7 +371,7 @@ Changes:
 
 - Adjust compilation output for `__internal__` class fields
 - Upgrade to `@polkadot/api` 10.5.1
-- Bump to `@polkadot/util` 12.1.1
+- Upgrade to `@polkadot/util` 12.1.1
 
 
 ## 0.46.1 Apr 22, 2023
