@@ -1,4 +1,4 @@
-// Copyright 2019-2024 @polkadot/extension-ui authors & contributors
+// Copyright 2019-2025 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 /* global chrome */
@@ -222,6 +222,10 @@ export async function updateAuthorization (authorizedAccounts: string[], url: st
 
 export async function rejectAuthRequest (requestId: string): Promise<void> {
   return sendMessage('pri(authorize.reject)', requestId);
+}
+
+export async function cancelAuthRequest (requestId: string): Promise<void> {
+  return sendMessage('pri(authorize.cancel)', requestId);
 }
 
 export async function subscribeMetadataRequests (cb: (accounts: MetadataRequest[]) => void): Promise<boolean> {

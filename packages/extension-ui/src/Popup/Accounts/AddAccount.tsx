@@ -1,12 +1,15 @@
-// Copyright 2019-2024 @polkadot/extension-ui authors & contributors
+// Copyright 2019-2025 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useCallback, useContext } from 'react';
 
+import { withErrorLog } from '@polkadot/extension-base/background';
+import { chrome } from '@polkadot/extension-inject/chrome';
+
 // import AddAccountImage from './AddAccountImage.js';
 import createaccount from '../../assets/createicon.svg';
 import { ActionContext, ButtonSm } from '../../components/index.js';
-import { useTranslation } from '../../hooks/index.js';
+import { useIsPopup, useTranslation } from '../../hooks/index.js';
 import Header from '../../partials/Header.js';
 import { styled } from '../../styled.js';
 
@@ -17,8 +20,19 @@ interface Props {
 function AddAccount ({ className }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const onAction = useContext(ActionContext);
+  const isPopup = useIsPopup();
   const _onClick = useCallback(
-    () => onAction('/account/create'),
+    () => {
+      if (isPopup) {
+        onAction('/');
+        const url = `${chrome.runtime.getURL('index.html')}#${'/account/create'}`;
+
+        withErrorLog(() => chrome.tabs.create({ url }));
+      } else {
+        onAction('/account/create');
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [onAction]
   );
 

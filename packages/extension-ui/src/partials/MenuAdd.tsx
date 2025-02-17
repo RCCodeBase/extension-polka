@@ -1,13 +1,17 @@
-// Copyright 2019-2024 @polkadot/extension-ui authors & contributors
+// Copyright 2019-2025 @polkadot/extension-ui authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // import { faUsb } from '@fortawesome/free-brands-svg-icons';
 import { faCodeBranch, faFileExport, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext } from 'react';
+import React, { useCallback, useContext } from 'react';
 
+import { withErrorLog } from '@polkadot/extension-base/background';
+import { chrome } from '@polkadot/extension-inject/chrome';
+
+// import { useHistory } from 'react-router';
 import { AccountContext, Link, Menu, MenuItem } from '../components/index.js';
-import { useTranslation } from '../hooks/index.js';
+import { useIsPopup, useTranslation } from '../hooks/index.js';
 // import { windowOpen } from '../messaging.js';
 import { styled } from '../styled.js';
 
@@ -22,6 +26,8 @@ interface Props {
 function MenuAdd ({ className, reference }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const { master } = useContext(AccountContext);
+  // const history = useHistory();
+  const isPopup = useIsPopup();
   // const mediaAllowed = useContext(MediaContext);
   // const { isLedgerCapable, isLedgerEnabled } = useLedger();
   // const isPopup = useIsPopup();
@@ -38,13 +44,29 @@ function MenuAdd ({ className, reference }: Props): React.ReactElement<Props> {
   //   }, []
   // );
 
+  const _onWindowOpen = useCallback(
+    (): void => {
+      if (isPopup) {
+        const url = `${chrome.runtime.getURL('index.html')}#${'/account/create'}`;
+
+        withErrorLog(() => chrome.tabs.create({ url }));
+      }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []
+  );
+
   return (
     <Menu
       className={className}
       reference={reference}
     >
       <MenuItem className='menuItem'>
-        <Link to={'/account/create'}>
+        <Link
+          onClick={()=> {
+            _onWindowOpen();
+          }}
+          to={'/account/create'}
+        >
           <FontAwesomeIcon icon={faPlusCircle} />
           <span>{ t('Create new account')}</span>
         </Link>

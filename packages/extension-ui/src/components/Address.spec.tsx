@@ -1,6 +1,6 @@
-// // Copyright 2019-2024 @polkadot/extension-ui authors & contributors
-// // SPDX-License-Identifier: Apache-2.0
-/* eslint-disable jest/no-commented-out-tests */
+// Copyright 2019-2025 @polkadot/extension-ui authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
 // import '@polkadot/extension-mocks/chrome';
 
 // import type { ReactWrapper } from 'enzyme';
