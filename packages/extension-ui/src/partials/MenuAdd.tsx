@@ -62,7 +62,8 @@ function MenuAdd ({ className, reference }: Props): React.ReactElement<Props> {
     >
       <MenuItem className='menuItem'>
         <Link
-          onClick={()=> {
+          // eslint-disable-next-line react/jsx-no-bind
+          onClick={() => {
             _onWindowOpen();
           }}
           to={'/account/create'}
